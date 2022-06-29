@@ -1,21 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DEV | Storybook</title>
-</head>
-<body>
-  <main>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DEV | Storybook</title>
+  </head>
+  <body>
     <h1>Storybook</h1>
+
     <p>Style defined into assets/styles/elements.css</p>
-    <section class="storybook-container">
-      <h2>Buttons</h2>
-      <button class="btn">Default</button>
-      <button class="btn btn-primary">Primary</button>      
-      <button class="btn btn-secondary">Secondary</button>      
-    </section>
-  </main>  
-</body>
+
+    <main>
+      <section class="storybook-container">
+        <h2>Buttons</h2>
+
+        <div class="storybook-container-elements">
+          <button class="btn btn-primary">Primary</button>
+          <!-- <button class="btn btn-primary">+ Primary icon</button> -->
+          <button class="btn btn-secondary">Secondary</button>
+          <!-- <button class="btn btn-secondary">+ Secondary icon</button> -->
+          <button class="btn btn-disabled">Disabled</button>
+        </div>
+      </section>
+
+      <section class="storybook-container">
+        <h2>Inputs</h2>
+
+        <div class="storybook-container-elements">
+          <input class="input input-size-one" type="text" placeholder="Input text size one" />
+
+          <input class="input input-size-two" type="text" placeholder="Input text size two" />
+
+          <select class="input input-size-one" name="colors" id="colors">
+            <option value="red">Red</option>
+            <option value="green">Green</option>
+            <option value="blue">Blue</option>
+          </select>
+
+          <input class="input input-size-two" type="date" name="date" id="date" />
+
+          <div class="input-rent">
+            <input class="input input-size-one" type="number" placeholder="Monthly rent" />
+            <span>/ month</span>
+          </div>
+
+          <div class="input-amount">
+            <span>$</span>
+            <input class="input input-size-one" type="number" placeholder="Enter amount" />
+          </div>
+
+          <textarea
+            class="input"
+            name="message"
+            id="message"
+            placeholder="Tell renters more about the property and lease details"
+          ></textarea>
+        </div>
+      </section>
+    </main>
+  </body>
 </html>

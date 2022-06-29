@@ -8,7 +8,7 @@ const authGuard = () => {
  return true
 }
 const routes = [
-    new Route("#storybook", "/pages/dev/storybook.html", storybookCtrl, true),
+    new Route("#storybook", "/pages/dev/storybook.html", storybookCtrl, false),
     new Route("#main", "index.html"),
   ];
   

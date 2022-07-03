@@ -1,0 +1,12 @@
+{
+  "firebaseConfig": {
+    "apiKey": "AIzaSyCBynxYibMmaoe46-7GmB91fmY5SbWQp18",
+    "authDomain": "knock-knock-5b763.firebaseapp.com",
+    "databaseURL": "https://knock-knock-5b763-default-rtdb.firebaseio.com",
+    "projectId": "knock-knock-5b763",
+    "storageBucket": "knock-knock-5b763.appspot.com",
+    "messagingSenderId": "202178218233",
+    "appId": "1:202178218233:web:3a4b182696ec7fc144fa28",
+    "measurementId": "G-FFS3E34ZQK"
+  }
+}

@@ -6,25 +6,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="./assets/styles/reset.css">
-  <link rel="stylesheet" href="./assets/styles/elements.css">
-  <link rel="stylesheet" href="./assets/styles/main.css">
-  <script defer type="module" src="./index.js"></script>
-</head>
-<body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="#home">home</a></li>
-        <li><a href="#groups">groups</a></li>
-        <li><a href="#profile">profile</a></li>
-        <li><a href="#storybook">Storybook</a></li>
-      </ul>
-    </nav>
-  </header>
-  <main id="root">
-    
-  </main>  
-</body>
+    <!-- CSS -->
+    <link rel="stylesheet" href="./assets/styles/reset.css" />
+    <link rel="stylesheet" href="./assets/styles/elements.css" />
+    <link rel="stylesheet" href="./assets/styles/main.css" />
+    <script defer type="module" src="./index.js"></script>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="#home">home</a></li>
+          <li><a href="#groups">groups</a></li>
+          <li><a href="#profile">profile</a></li>
+          <li><a href="#storybook">Storybook</a></li>
+          <li id="openLoginBtn">Login</li>
+          <li id="openRegisterBtn">Register</li>
+        </ul>
+      </nav>
+    </header>
+    <div class="auth-modal" id="authModal">
+      <div id="loginForm" class="form login-form size-33 center-margin">
+        <h2>Login</h2>
+        <input
+          type="email"
+          id="loginEmail"
+          class="input input-size-one"
+          name="login-email"
+          placeholder="Email"
+          required
+        /><br />
+        <input
+          type="password"
+          id="loginPassword"
+          class="input input-size-one"
+          name="login-password"
+          placeholder="Password"
+          required
+        /><br />
+        <button id="loginBtn" class="btn btn-primary">Login</button><br />
+        <button id="toggleToRegisterBtn" class="btn btn-secondary">
+          don't have an account? REGISTER
+        </button>
+      </div>
+      <div id="registerForm" class="form register-form size-33 center-margin">
+        <h2>Register</h2>
+        <label for="firstname">First Name</label>
+        <input
+          type="text"
+          id="firstName"
+          class="input input-size-one"
+          name="First-name"
+          placeholder="First-name"
+          required
+        />
+        <label for="lastname">Last Name</label>
+        <input
+          type="text"
+          id="lastName"
+          class="input input-size-one"
+          name="Last-name"
+          placeholder="Last-name"
+          required
+        />
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          class="input input-size-one"
+          name="register-email"
+          placeholder="Email"
+          required
+        />
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          class="input input-size-one"
+          name="register-password"
+          placeholder="Password"
+          required
+        />
+        <label for="password">Password Confirmation</label>
+        <input
+          type="password"
+          id="passwordConfirmation"
+          class="input input-size-one"
+          name="register-password"
+          placeholder="Password Confirmation"
+          required
+        />
+        <button id="registerBtn" class="btn btn-primary">Register</button><br />
+        <button id="toggleToLoginBtn" class="btn btn-secondary">have an account? LOGIN</button>
+      </div>
+    </div>
+    <main id="root"></main>
+  </body>
 </html>

@@ -1,0 +1,50 @@
+.auth-modal {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, .7);
+  display: none;
+}
+
+.auth-modal .login-form, 
+.auth-modal .register-form {
+  display: none;
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 28.14px;
+}
+
+.auth-modal.is-open,
+.login-form.is-open,
+.register-form.is-open   {
+  display: flex;
+} 
+
+
+.form {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.form input {
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.size-50 {
+  width: 50%;
+}
+
+.size-33 {
+  width: 33.333%;
+}
+
+.center-margin {
+  margin: 0 auto;
+}

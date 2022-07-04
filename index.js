@@ -52,7 +52,7 @@ authModal.addEventListener('click', (e) => {
 
 const routes = [
   new Route("#home", "/pages/home.html"),
-  new Route("#storybook", "/pages/dev/storybook.html", storybookCtrl, false),
+  new Route("#storybook", "/pages/dev/storybook.html", [storybookCtrl, mapCtrl], false),
   new Route("#profile", "/pages/profile.html"),
   new Route("#groups", "/pages/groups.html"),
   new Route("#group", "/pages/group.html"),

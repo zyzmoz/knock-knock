@@ -14,7 +14,7 @@ const authGuard = () => {
   return false;
 };
 const routes = [
-  new Route("#storybook", "/pages/dev/storybook.html", storybookCtrl, true),
+  new Route("#storybook", "/pages/dev/storybook.html", storybookCtrl, false),
   new Route("#home", "/pages/home.html"),
   new Route("#profile", "/pages/profile.html"),
   new Route("#groups", "/pages/groups.html"),

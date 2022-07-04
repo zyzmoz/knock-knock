@@ -1,6 +1,7 @@
 import { Route, Router } from "./assets/js/classes/router.js";
 import authCtrl from "./assets/js/controllers/authCtrl.js";
 import { storybookCtrl } from "./assets/js/controllers/storybookCtrl.js";
+import { mapCtrl } from "./assets/js/controllers/mapCtrl.js";
 
 const authGuard = () => {
   const isAuthenticated = localStorage.getItem("isAuthenticated");

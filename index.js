@@ -1,17 +1,17 @@
 import { Route, Router } from "./assets/js/classes/router.js";
 import authCtrl from "./assets/js/controllers/authCtrl.js";
 import { storybookCtrl } from "./assets/js/controllers/storybookCtrl.js";
+<<<<<<< HEAD
 import { mapCtrl } from "./assets/js/controllers/mapCtrl.js";
+=======
+import { userAuthState } from "./assets/js/integrations/firebase.js";
+>>>>>>> a80f144 (Auth Guard refactor)
 
 const authGuard = () => {
-  const isAuthenticated = localStorage.getItem("isAuthenticated");
-
-  if (isAuthenticated == "true") {
-    return true;
+  if (!userAuthState) {
+    window.location.replace("#home");
   }
-
-  window.location.replace("#register");
-  return false;
+  return userAuthState;
 };
 
 openLoginBtn?.addEventListener("click", () => {
@@ -38,22 +38,27 @@ toggleToLoginBtn?.addEventListener("click", () => {
   authCtrl.loginCtrl();
 });
 
-// Close modal
-authModal.addEventListener('click', (e) => {
-  const elem = document.getElementById("loginForm") || document.getElementById("register")
-  if (
-    !document.getElementById(elem)?.contains(e.target)
-  ) {
-        authModal.classList.remove("is-open");
-        registerForm.classList.remove("is-open");
-        loginForm.classList.remove("is-open");
-  }
+signOutBtn.addEventListener("click", () => {
+  authCtrl.logout();
+  window.location.replace("#home");
 });
+
+// Close modal
+// authModal.addEventListener("click", (e) => {
+//   const elem =
+//   document.getElementById("loginForm") || document.getElementById("register");
+//   console.log(elem)
+//   if (!document.getElementById(elem)?.contains(e.target)) {
+//     authModal.classList.remove("is-open");
+//     registerForm.classList.remove("is-open");
+//     loginForm.classList.remove("is-open");
+//   }
+// });
 
 const routes = [
   new Route("#home", "/pages/home.html"),
   new Route("#storybook", "/pages/dev/storybook.html", [storybookCtrl, mapCtrl], false),
-  new Route("#profile", "/pages/profile.html"),
+  new Route("#profile", "/pages/profile.html", () => {}, true),
   new Route("#groups", "/pages/groups.html"),
   new Route("#group", "/pages/group.html"),
 ];

@@ -2,7 +2,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.3/firebase
 import {
   getAuth,
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  signOut
 } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-auth.js";
 import {
   getDatabase,
@@ -18,6 +19,17 @@ import { buildError } from "../utils/firebaseErrors.js";
 const app = initializeApp(config.firebaseConfig);
 const auth = getAuth(app);
 const database = getDatabase(app);
+
+let userAuthState = null;
+auth.onAuthStateChanged(async (user) => {
+  //The callback is passed user parameter from event
+  if (user) {
+    userAuthState = user;
+  } else {
+    userAuthState = null;
+    console.log("Not signed in");
+  }
+});
 
 const login = async (email, password) => {
   const res = await signInWithEmailAndPassword(auth, email, password);
@@ -52,8 +64,8 @@ const register = async (user) => {
   return { user: { ...user, uid } };
 };
 
-const signOut = async () => {
-  await signOut(auth);
+const logout = () => {
+  signOut(auth);
 };
 
-export { app, auth, database, login, register, signOut };
+export { app, auth, database, login, register, logout, userAuthState };

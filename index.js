@@ -1,6 +1,7 @@
 import { Route, Router } from "./assets/js/classes/router.js";
 import authCtrl from "./assets/js/controllers/authCtrl.js";
 import { storybookCtrl } from "./assets/js/controllers/storybookCtrl.js";
+import { mapCtrl } from "./assets/js/controllers/mapCtrl.js";
 
 const authGuard = () => {
   const isAuthenticated = localStorage.getItem("isAuthenticated");
@@ -51,7 +52,7 @@ authModal.addEventListener('click', (e) => {
 
 const routes = [
   new Route("#home", "/pages/home.html"),
-  new Route("#storybook", "/pages/dev/storybook.html", storybookCtrl, false),
+  new Route("#storybook", "/pages/dev/storybook.html", [storybookCtrl, mapCtrl], false),
   new Route("#profile", "/pages/profile.html"),
   new Route("#groups", "/pages/groups.html"),
   new Route("#group", "/pages/group.html"),

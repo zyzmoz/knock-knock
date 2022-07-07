@@ -147,3 +147,7 @@ textarea {
   height: 204px;
   line-height: 24px;
 }
+
+#map {
+  height: 300px;
+}

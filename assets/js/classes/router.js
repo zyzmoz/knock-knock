@@ -27,7 +27,7 @@ export class Router {
     const pageHash = window.location.hash;
 
     const routeObj = Router.pages.find((page) => page.pageId === pageHash);
-    if (routeObj.isProtected && !Router.authGuard()) {
+    if (routeObj?.isProtected && !Router.authGuard()) {
       return;
     } else {
       const pageHtml = await (await fetch(routeObj.htmlPath)).text();
@@ -39,7 +39,11 @@ export class Router {
 
   static createController = (ctrl) => {
     try {
-      ctrl();
+      if (Array.isArray(ctrl)) {
+        ctrl.map(c => c())
+      } else {
+        ctrl();
+      }
     } catch (e) {
       console.error("Error invoking controller", e);
     }

@@ -1,11 +1,8 @@
 import { Route, Router } from "./assets/js/classes/router.js";
 import authCtrl from "./assets/js/controllers/authCtrl.js";
 import { storybookCtrl } from "./assets/js/controllers/storybookCtrl.js";
-<<<<<<< HEAD
 import { mapCtrl } from "./assets/js/controllers/mapCtrl.js";
-=======
 import { userAuthState } from "./assets/js/integrations/firebase.js";
->>>>>>> a80f144 (Auth Guard refactor)
 
 const authGuard = () => {
   if (!userAuthState) {
@@ -38,10 +35,10 @@ toggleToLoginBtn?.addEventListener("click", () => {
   authCtrl.loginCtrl();
 });
 
-signOutBtn.addEventListener("click", () => {
-  authCtrl.logout();
-  window.location.replace("#home");
-});
+// signOutBtn?.addEventListener("click", () => {
+//   authCtrl.logout();
+//   window.location.replace("#home");
+// });
 
 // Close modal
 // authModal.addEventListener("click", (e) => {

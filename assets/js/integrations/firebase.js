@@ -9,6 +9,7 @@ import {
   getDatabase,
   set,
   ref,
+  onValue,
 } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-database.js";
 
 import config from "../../../config.json" assert { type: "json" };
@@ -68,6 +69,22 @@ const logout = () => {
   signOut(auth);
 };
 
+const findMany = async (collection, callback = (res) => {}) => {
+  const _ref = ref(database, `${collection}`);
+  onValue(_ref, (snapshot) => {
+    const data = snapshot.val();
+    callback(data);
+  });
+};
+
+const findOne = async (collection, uid, callback = (res) => {}) => {
+  const _ref = ref(database, `${collection}/${uid}`);
+  onValue(_ref, (snapshot) => {
+    const data = snapshot.val();
+    callback(data);
+  });
+};
+
 const createOrUpdateData = async (collection, uid, data) => {
   const updateColletion = uid ? `${collection}/${uid}` : `${collection}`;
   const res = await set(ref(database, updateColletion), {
@@ -81,8 +98,18 @@ const createOrUpdateData = async (collection, uid, data) => {
 
 const deleteData = async (collection, uid) => {
   await ref(database, updateColletion).remove();
-}
+};
 
-
-
-export { app, auth, database, login, register, logout, userAuthState, createOrUpdateData, deleteData };
+export {
+  app,
+  auth,
+  database,
+  login,
+  register,
+  logout,
+  userAuthState,
+  createOrUpdateData,
+  deleteData,
+  findOne,
+  findMany,
+};

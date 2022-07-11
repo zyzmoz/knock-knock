@@ -1,21 +1,14 @@
 import {
-  database,
   userAuthState,
   createOrUpdateData,
+  findOne,
 } from "../integrations/firebase.js";
-import {
-  set,
-  ref,
-  onValue,
-} from "https://www.gstatic.com/firebasejs/9.8.3/firebase-database.js";
 import { User } from "../classes/User.js";
 
 export const profileCtrl = async () => {
   let user;
 
-  const userRef = ref(database, `users/${userAuthState?.uid}`);
-  onValue(userRef, (snapshot) => {
-    const data = snapshot.val();
+  findOne("users", userAuthState?.uid, (data) => {
     user = new User(data);
     user.firstName = data.firstName;
     profileName.innerHTML = user.fullName;
@@ -24,13 +17,13 @@ export const profileCtrl = async () => {
     profileEmail.value = `${user.email}`;
   });
 
-  profileFirstName.addEventListener('change', () => {
-    onInputChanged()
-  })
+  profileFirstName.addEventListener("change", () => {
+    onInputChanged();
+  });
 
-  profileLastName.addEventListener('change', () => {
-    onInputChanged()
-  })
+  profileLastName.addEventListener("change", () => {
+    onInputChanged();
+  });
 
   const onInputChanged = () => {
     profileName.innerHTML = `${profileFirstName.value} ${profileLastName.value}`;

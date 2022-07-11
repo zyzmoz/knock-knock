@@ -79,4 +79,10 @@ const createOrUpdateData = async (collection, uid, data) => {
   }
 };
 
-export { app, auth, database, login, register, logout, userAuthState, createOrUpdateData };
+const deleteData = async (collection, uid) => {
+  await ref(database, updateColletion).remove();
+}
+
+
+
+export { app, auth, database, login, register, logout, userAuthState, createOrUpdateData, deleteData };

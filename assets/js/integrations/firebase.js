@@ -3,7 +3,7 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signOut
+  signOut,
 } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-auth.js";
 import {
   getDatabase,
@@ -68,4 +68,15 @@ const logout = () => {
   signOut(auth);
 };
 
-export { app, auth, database, login, register, logout, userAuthState };
+const createOrUpdateData = async (collection, uid, data) => {
+  const updateColletion = uid ? `${collection}/${uid}` : `${collection}`;
+  const res = await set(ref(database, updateColletion), {
+    ...data,
+  }).catch((error) => ({ error }));
+
+  if (res?.error) {
+    return { error: buildError(res.error) };
+  }
+};
+
+export { app, auth, database, login, register, logout, userAuthState, createOrUpdateData };

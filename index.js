@@ -3,6 +3,7 @@ import authCtrl from "./assets/js/controllers/authCtrl.js";
 import { storybookCtrl } from "./assets/js/controllers/storybookCtrl.js";
 import { mapCtrl } from "./assets/js/controllers/mapCtrl.js";
 import { userAuthState } from "./assets/js/integrations/firebase.js";
+import { profileCtrl } from "./assets/js/controllers/profileCtrl.js";
 
 const authGuard = () => {
   if (!userAuthState) {
@@ -61,7 +62,7 @@ const routes = [
     [storybookCtrl, mapCtrl],
     false
   ),
-  new Route("#profile", "/pages/profile.html", () => {}, true),
+  new Route("#profile", "/pages/profile.html", profileCtrl, true),
   new Route("#groups", "/pages/groups.html"),
   new Route("#group", "/pages/group.html"),
 ];

@@ -40,21 +40,27 @@ toggleToLoginBtn?.addEventListener("click", () => {
 //   window.location.replace("#home");
 // });
 
+const closeModal = () => {
+  authModal.classList.remove("is-open");
+  registerForm.classList.remove("is-open");
+  loginForm.classList.remove("is-open");
+};
+
 // Close modal
-// authModal.addEventListener("click", (e) => {
-//   const elem =
-//   document.getElementById("loginForm") || document.getElementById("register");
-//   console.log(elem)
-//   if (!document.getElementById(elem)?.contains(e.target)) {
-//     authModal.classList.remove("is-open");
-//     registerForm.classList.remove("is-open");
-//     loginForm.classList.remove("is-open");
-//   }
-// });
+authModal.addEventListener("click", (e) => {
+  if (e.target.classList.toString().includes("auth-modal")) {
+    closeModal();
+  }
+});
 
 const routes = [
   new Route("#home", "/pages/home.html"),
-  new Route("#storybook", "/pages/dev/storybook.html", [storybookCtrl, mapCtrl], false),
+  new Route(
+    "#storybook",
+    "/pages/dev/storybook.html",
+    [storybookCtrl, mapCtrl],
+    false
+  ),
   new Route("#profile", "/pages/profile.html", () => {}, true),
   new Route("#groups", "/pages/groups.html"),
   new Route("#group", "/pages/group.html"),

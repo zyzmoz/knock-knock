@@ -5,7 +5,14 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from 'https://www.gstatic.com/firebasejs/9.8.3/firebase-auth.js';
-import { getDatabase, set, ref, child, get } from 'https://www.gstatic.com/firebasejs/9.8.3/firebase-database.js';
+import {
+  getDatabase,
+  set,
+  ref,
+  child,
+  get,
+  onValue,
+} from 'https://www.gstatic.com/firebasejs/9.8.3/firebase-database.js';
 
 import config from '../../../config.json' assert { type: 'json' };
 
@@ -27,6 +34,12 @@ auth.onAuthStateChanged(async (user) => {
   }
 });
 
+/**
+ *
+ * @param {string} email
+ * @param {string} password
+ * @returns
+ */
 const login = async (email, password) => {
   const res = await signInWithEmailAndPassword(auth, email, password);
   if (res?.error) {
@@ -36,6 +49,11 @@ const login = async (email, password) => {
   return { ...res.user };
 };
 
+/**
+ *
+ * @param {object} user
+ * @returns
+ */
 const register = async (user) => {
   const { firstName, lastName, email, password } = user;
   let res = await createUserWithEmailAndPassword(auth, email, password).catch((error) => ({ error }));
@@ -74,4 +92,71 @@ const getUser = async (uid) => {
   }
 };
 
-export { app, auth, database, login, register, logout, getUser, userAuthState };
+/**
+ *
+ * @param {string} collection
+ * @param {Function} callback
+ */
+const findMany = async (collection, callback = (res) => {}) => {
+  const _ref = ref(database, `${collection}`);
+  onValue(_ref, (snapshot) => {
+    const data = snapshot.val();
+    callback(data);
+  });
+};
+
+/**
+ *
+ * @param {string} collection
+ * @param {string} uid
+ * @param {Function} callback
+ */
+const findOne = async (collection, uid, callback = (res) => {}) => {
+  const _ref = ref(database, `${collection}/${uid}`);
+  onValue(_ref, (snapshot) => {
+    const data = snapshot.val();
+    callback(data);
+  });
+};
+
+/**
+ *
+ * @param {string} collection
+ * @param {string} uid
+ * @param {object} data
+ * @returns
+ */
+const createOrUpdateData = async (collection, uid, data) => {
+  const updateColletion = uid ? `${collection}/${uid}` : `${collection}`;
+  const res = await set(ref(database, updateColletion), {
+    ...data,
+  }).catch((error) => ({ error }));
+
+  if (res?.error) {
+    return { error: buildError(res.error) };
+  }
+};
+
+/**
+ *
+ * @param {string} collection
+ * @param {string} uid
+ */
+const deleteData = async (collection, uid) => {
+  await ref(database, `${collection}/${uid}`).remove();
+};
+
+export {
+  app,
+  auth,
+  database,
+  login,
+  register,
+  logout,
+  getUser,
+  userAuthState,
+  createOrUpdateData,
+  deleteData,
+  findOne,
+  findMany,
+};

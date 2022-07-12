@@ -1,3 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Bevan&display=swap');
+
+/* Mobile */
+.tablet-and-desktop-view {
+  display: none;
+}
+
+.mobile-view {
+  position: relative;
+}
+
+.m-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 10px 2rem;
+  gap: 2rem;
+  background-color: rgb(230, 230, 230, 0.3);
+  z-index: -1;
+}
+
+.logo-icon {
+  width: 3.8rem;
+}
+
+.search-icon,
+.bell-icon,
+.hamburger-icon {
+  width: 1.6rem;
+}
+
+.cross-icon {
+  width: 2.2rem;
+}
+
+.logo-group,
+.nav-items {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.nav-items {
+  gap: 1.4rem;
+  justify-content: flex-end;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.logo-group *:hover,
+.nav-items *:hover,
+.cross-icon:hover {
+  cursor: pointer;
+}
+
+.logged-out-sidebar,
+.logged-in-sidebar {
+  display: none;
+  width: 256px;
+  background-color: #fff;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.cross-icon {
+  display: block;
+  margin-top: 2rem;
+  margin-left: 12rem;
+}
+
+.sidebar-items {
+  margin-top: 5rem;
+  display: flex;
+  gap: 1.4rem;
+  justify-content: flex-end;
+  flex-flow: column nowrap;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  padding: 0 2rem;
+}
+
+.sidebar-items p {
+  border-bottom: 1px solid #e6e6e6;
+  padding-bottom: 18px;
+}
+
+.sidebar-active {
+  display: block;
+}
+
+/* Tablet */
+@media screen and (min-width: 700px) {
+  .mobile-view {
+    display: none;
+  }
+
+  .tablet-and-desktop-view {
+    display: block;
+  }
+
+  .td-logged-out,
+  .td-logged-in,
+  .td-create-listing {
+    display: none;
+    padding: 16px 2rem;
+    gap: 1rem;
+    background-color: rgb(230, 230, 230, 0.3);
+  }
+
+  .td-logged-out,
+  .td-logged-in {
+    grid-template-columns: 1fr 1fr 4fr;
+  }
+
+  .td-create-listing {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .logo-icon {
+    width: 3rem;
+  }
+
+  .logo-title {
+    display: none;
+  }
+
+  .searchbar-icon,
+  .bell-icon {
+    width: 1.4rem;
+  }
+
+  .user-image {
+    width: 2rem;
+    border-radius: 50%;
+  }
+
+  .searchbar-group,
+  .user-group {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+  }
+
+  .user-group {
+    gap: 0.4rem;
+    padding: 0;
+  }
+
+  .nav-items {
+    gap: 1.4rem;
+  }
+
+  .searchbar-group {
+    position: relative;
+  }
+
+  .searchbar {
+    width: 150px;
+    padding: 12px 12px 12px 24px;
+    border: 1px solid #8d8d8d;
+    border-radius: 10px;
+    background-color: rgb(230, 230, 230, 0.3);
+  }
+
+  .searchbar-icon {
+    position: absolute;
+    right: 1rem;
+  }
+
+  .searchbar::placeholder {
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    color: #8d8d8d;
+  }
+
+  .td-active-nav {
+    display: grid;
+  }
+}
+
+@media screen and (min-width: 864px) {
+  .searchbar {
+    width: 320px;
+  }
+}
+
+/* Desktop */
+@media screen and (min-width: 1200px) {
+  .td-logged-out,
+  .td-logged-in {
+    grid-template-columns: 1fr 1fr 2fr;
+  }
+
+  .logo-title {
+    font-family: 'Bevan', cursive;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 32px;
+    display: block;
+  }
+
+  .searchbar {
+    width: 410px;
+  }
+}
+
+/* Modal */
+
 .auth-modal {
   position: fixed;
   display: flex;
@@ -7,11 +222,11 @@
   width: 100%;
   height: 100vh;
   z-index: 999;
-  background-color: rgba(0, 0, 0, .7);
+  background-color: rgba(0, 0, 0, 0.7);
   display: none;
 }
 
-.auth-modal .login-form, 
+.auth-modal .login-form,
 .auth-modal .register-form {
   display: none;
   background-color: white;
@@ -21,10 +236,9 @@
 
 .auth-modal.is-open,
 .login-form.is-open,
-.register-form.is-open   {
+.register-form.is-open {
   display: flex;
-} 
-
+}
 
 .form {
   display: flex;

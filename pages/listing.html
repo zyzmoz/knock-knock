@@ -1,14 +1,228 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <h1>Listing</h1>
+<div class="create-listing-wrapper">
+  <form>
+    <div class="step">
+      <div class="input-group">
+        <label for="">Where's your property located?</label>
+        <input type="text" placeholder="Street address" id="address" />
+        <input type="text" placeholder="Apt/Unit #" id="unitNumber" />
+      </div>
 
-    <h4>Create Listing</h4>
-  </body>
-</html>
+      <div class="input-group">
+        <label for="">What type of property is this?</label>
+        <select name="propertyType" id="propertyType">
+          <option value="apartment">Apartment</option>
+          <option value="condo">Condo</option>
+          <option value="house">House</option>
+        </select>
+      </div>
+
+      <div class="btns">
+        <button class="save">Save & exit</button>
+        <button class="next">Next</button>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="input-group">
+        <label for="">How many bedrooms and bathrooms does the property have?</label>
+
+        <label for="bedroomCount">Bedroom</label>
+        <input type="number" name="bedroomCount" id="bedroomCount" />
+
+        <label for="bathroomCount">Bathroom</label>
+        <input type="number" name="bathroomCount" id="bathroomCount" />
+
+        <label for="halfBathroomCount">Half Bathroom</label>
+        <input type="number" name="halfBathroomCount" id="halfBathroomCount" />
+      </div>
+
+      <div class="input-group">
+        <label for="squareFeet">How big is the space?</label>
+
+        <input type="number" name="squareFeet" id="squareFeet" placeholder="Square ft" />
+      </div>
+
+      <div class="input-group">
+        <label for="propertyDescription">Write a detailed description of your property</label>
+        <p>Share important details about the property, neighborhood, and other unique features to attract renters.</p>
+
+        <textarea
+          name="propertyDescription"
+          id="propertyDescription"
+          cols="30"
+          rows="10"
+          placeholder="Tell renters more about the property and lease details"
+        ></textarea>
+      </div>
+
+      <div class="input-group">
+        <label for="">Which in-unit amenities and features do you have?</label>
+
+        <label for="">Heating & Cooling</label>
+        <hr />
+        <div class="checkbox">
+          <input type="checkbox" name="airConditioning" id="airConditioning" />
+          <label for="airConditioning">Air conditioning</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" name="fireplace" id="fireplace" />
+          <label for="fireplace">Fireplace</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" name="centralHeat" id="centralHeat" />
+          <label for="centralHeat">Central heat</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" name="ceilingFan" id="ceilingFan" />
+          <label for="ceilingFan">Ceiling fan</label>
+        </div>
+        <br />
+
+        <label for="">Listing Features</label>
+        <hr />
+        <div class="checkbox">
+          <input type="checkbox" name="inUnitLaundry" id="inUnitLaundry" />
+          <label for="inUnitLaundry">In-unit laundry</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" name="furnished" id="furnished" />
+          <label for="furnished">Furnished</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" name="hardwoodFloor" id="hardwoodFloor" />
+          <label for="hardwoodFloor">Hardwood floor</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" name="carpet" id="carpet" />
+          <label for="carpet">Carpet</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" name="wheelchairAccess" id="wheelchairAccess" />
+          <label for="wheelchairAccess">Wheelchair access</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" name="highCeiling" id="highCeiling" />
+          <label for="highCeiling">High ceilings</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" name="walkinCloset" id="walkinCloset" />
+          <label for="walkinCloset">Walkin closet</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" name="balconyOrDesk" id="balconyOrDesk" />
+          <label for="balconyOrDesk">Balcony or deck</label>
+        </div>
+        <br />
+
+        <label for="">Other</label>
+        <hr />
+        <div class="checkbox">
+          <input type="checkbox" name="dishwasher" id="dishwasher" />
+          <label for="dishwasher">Dishwasher</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" name="garden" id="garden" />
+          <label for="garden">Garden</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" name="swimmingPool" id="swimmingPool" />
+          <label for="swimmingPool">Swimming pool</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" name="assignedParking" id="assignedParking" />
+          <label for="assignedParking">Assigned parking</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" name="storage" id="storage" />
+          <label for="storage">Storage</label>
+        </div>
+        <br />
+
+        <label for="">Building features</label>
+        <hr />
+        <div class="checkbox">
+          <input type="checkbox" name="controlledAccess" id="controlledAccess" />
+          <label for="controlledAccess">Controlled access</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" name="gym" id="gym" />
+          <label for="gym">Gym</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" name="outdoorSpaces" id="outdoorSpaces" />
+          <label for="outdoorSpaces">Outdoor space</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" name="residentLounge" id="residentLounge" />
+          <label for="residentLounge">Resident's lounge</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" name="garageParking" id="garageParking" />
+          <label for="garageParking">Garage Parking</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" name="businessCenter" id="businessCenter" />
+          <label for="businessCenter">Business center</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" name="roofDeck" id="roofDeck" />
+          <label for="roofDeck">Roof deck</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" name="elevator" id="elevator" />
+          <label for="elevator">Elevator</label>
+        </div>
+        <br />
+
+        <label for="">Services</label>
+        <hr />
+        <div class="checkbox">
+          <input type="checkbox" name="packageService" id="packageService" />
+          <label for="packageService">Package service</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" name="doorPerson" id="doorPerson" />
+          <label for="doorPerson">Door person</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" name="conceirgeService" id="conceirgeService" />
+          <label for="conceirgeService">Conceirge service</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" name="dryCleaningService" id="dryCleaningService" />
+          <label for="dryCleaningService">Dry cleaning service</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" name="onSiteManagement" id="onSiteManagement" />
+          <label for="onSiteManagement">On-site management</label>
+        </div>
+        <br />
+
+        <label for="">Are pets allowed?</label>
+        <hr />
+        <div class="checkbox">
+          <input type="radio" id="yesAllowed" name="petsAllowed" value="Yes" />
+          <label for="petsAllowed">Yes</label>
+        </div>
+        <div class="checkbox">
+          <input type="radio" id="noNotAllowed" name="petsAllowed" value="No" />
+          <label for="petsAllowed">No</label>
+        </div>
+        <br />
+
+        <label for="">Would you like to assign a group?</label>
+        <select name="propertyType" id="group">
+          <option value="apartment">Apartment</option>
+          <option value="condo">Condo</option>
+          <option value="house">House</option>
+        </select>
+      </div>
+
+      <div class="btns">
+        <button class="back">Back</button>
+        <button class="save">Save & exit</button>
+        <button class="next">Next</button>
+      </div>
+    </div>
+  </form>
+</div>

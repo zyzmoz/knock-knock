@@ -267,3 +267,51 @@
 .profile h1 {
   text-align: center;
 }
+
+/* CREATE LISTING */
+.create-listing-wrapper {
+  max-width: 1200px;
+  display: block;
+  margin: auto;
+  padding: 1rem 0;
+}
+
+.create-listing-wrapper input,
+.create-listing-wrapper label,
+.create-listing-wrapper textarea {
+  display: block;
+  padding: 0.2rem;
+}
+
+.create-listing-wrapper select {
+  padding: 0.2rem 0.8rem;
+}
+
+.create-listing-wrapper input {
+  margin-bottom: 0.4rem;
+}
+
+.input-group {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: #eef;
+}
+
+.step {
+  padding: 1rem;
+  border: 1px solid #000;
+  margin: 1rem 0 3rem;
+}
+
+.btns {
+  text-align: right;
+}
+
+.btns button {
+  padding: 0.2rem 0.8rem;
+}
+
+.checkbox input,
+.checkbox label {
+  display: inline;
+}

@@ -124,18 +124,6 @@
       </nav>
     </header>
 
-    <!-- <header>
-      <nav>
-        <ul>
-          <li><a href="#home">home</a></li>
-          <li><a href="#groups">groups</a></li>
-          <li><a href="#profile">profile</a></li>
-          <li><a href="#storybook">Storybook</a></li>
-          <li id="openLoginBtn">Login</li>
-          <li id="openRegisterBtn">Register</li>
-        </ul>
-      </nav>
-    </header> -->
     <div class="auth-modal" id="authModal">
       <div id="loginForm" class="form login-form size-33 center-margin">
         <h2>Login</h2>
@@ -155,6 +143,9 @@
           placeholder="Password"
           required
         /><br />
+        <div id="loginError" class="error-message">
+
+        </div>
         <button id="loginBtn" class="btn btn-primary">Login</button><br />
         <button id="toggleToRegisterBtn" class="btn btn-secondary">don't have an account? REGISTER</button>
       </div>
@@ -205,6 +196,9 @@
           placeholder="Password Confirmation"
           required
         />
+        <div id="registerError" class="error-message">
+
+        </div>
         <button id="registerBtn" class="btn btn-primary">Register</button><br />
         <button id="toggleToLoginBtn" class="btn btn-secondary">have an account? LOGIN</button>
       </div>

@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap");
 
 body {
   padding: 1rem;
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
   font-weight: 400;
   font-size: 1rem;
 }
@@ -14,7 +14,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   font-weight: 700;
 }
 
@@ -40,7 +40,7 @@ h6 {
   padding: 1rem 2rem;
   border: none;
   border-radius: 10px;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   font-weight: 700;
   font-size: 1rem;
   transition: all 0.5s;
@@ -76,7 +76,7 @@ h6 {
   padding: 12px 24px;
   border: 1px solid #8d8d8d;
   border-radius: 10px;
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
   font-weight: 400;
   font-size: 18px;
   outline: none;
@@ -98,8 +98,8 @@ select {
   background-position-y: 0.8rem;
 }
 
-.input[type='date']::-webkit-inner-spin-button,
-.input[type='date']::-webkit-calendar-picker-indicator {
+.input[type="date"]::-webkit-inner-spin-button,
+.input[type="date"]::-webkit-calendar-picker-indicator {
   background: url(../icons/calendar.svg) no-repeat;
 }
 
@@ -111,7 +111,7 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type='number'] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
 
@@ -159,4 +159,10 @@ textarea {
   border: 2px solid #d2d2d2;
   overflow: hidden;
   margin: 0 auto;
+}
+
+.error-message {
+  color: red;
+  font-size: 16pt;
+  padding: 0.5rem;
 }

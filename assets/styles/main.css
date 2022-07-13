@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bevan&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bevan&display=swap");
 
 /* Mobile */
 .tablet-and-desktop-view {
@@ -42,7 +42,7 @@
 .nav-items {
   gap: 1.4rem;
   justify-content: flex-end;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   font-weight: 700;
   font-size: 16px;
 }
@@ -76,7 +76,7 @@
   gap: 1.4rem;
   justify-content: flex-end;
   flex-flow: column nowrap;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   font-weight: 700;
   font-size: 20px;
   padding: 0 2rem;
@@ -171,7 +171,7 @@
   }
 
   .searchbar::placeholder {
-    font-family: 'Nunito';
+    font-family: "Nunito";
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -198,7 +198,7 @@
   }
 
   .logo-title {
-    font-family: 'Bevan', cursive;
+    font-family: "Bevan", cursive;
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
@@ -267,3 +267,132 @@
 .profile h1 {
   text-align: center;
 }
+
+/* Groups */
+.groups-container {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.groups-header {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.groups-header button {
+  height: 2.8rem;
+}
+
+.groups-content {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.group-list,
+.group-feed {
+  border: 2px solid #e6e6e6;
+  overflow: hidden;
+}
+
+.group-list {
+  width: 33%;
+  border-radius: 16px;
+}
+
+.group-list-title {
+  padding: 1rem;
+  background-color: #e6e6e6;
+}
+
+.group-list-search-container {
+  display: flex;
+  padding: 1rem;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.group-list-content {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.group-list-item {
+  padding: 1rem;
+  font-weight: bold;
+}
+
+.group-feed {
+  width: 66%;
+  border-radius: 16px 16px 0 0;
+}
+
+.group-feed-header {
+  border-bottom: 1px solid #e6e6e6;
+  background-color: #fff5ec;
+  padding: 1rem;
+}
+
+.group-feed-title {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.group-feed-name {
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.group-feed-participants {
+  font-size: 10pt;
+}
+
+
+.group-feed-messages {
+  padding: 1rem;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+}
+
+.group-feed-message {
+  display: flex;
+  flex-flow: row wrap;
+  margin-bottom: 1rem;
+}
+
+.group-feed-message .avatar {
+  width: 48px;
+  height: 48px;
+  margin: unset;
+  margin-right: 1rem;
+}
+
+
+.group-feed-form  {
+  border-top: 1px solid #e6e6e6;
+  display: flex;
+}
+
+
+.group-feed-form input, 
+.group-feed-form button {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  height: 2.8rem;
+
+} 
+
+.group-feed-form input {
+  flex: 0 0 80%;
+}
+
+.group-feed-form button {
+ flex: 0 0 20%;
+}
+

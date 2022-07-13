@@ -1,12 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <h1>Groups</h1>
-</body>
-</html>
+<article class="groups-container">
+  <div class="groups-header">
+    <h1>Manage Groups</h1>
+    <button class="btn btn-primary" id="createGroupButton">Create</button>
+  </div>
+  <div class="groups-content">
+    <div class="group-list">
+      <div class="group-list-title">All Groups</div>
+      <div class="group-list-search-container">
+        <input class="input input-size-one" type="text" placeholder="Search" />
+      </div>
+      <div class="group-list-content">
+        <div class="group-list-item">No Groups Available</div>
+      </div>
+    </div>
+    <div class="group-feed">
+      <div class="group-feed-header">
+        <div class="group-feed-title">
+          <div class="group-feed-name">Group Test</div>
+          <div class="group-feed-actions">...</div>
+        </div>
+        <p class="group-feed-participants">Test,</p>
+      </div>
+      <div class="group-feed-messages">
+        <div class="group-feed-message">
+          <figure class="avatar">
+            <img src="https://picsum.photos/200/200" alt="" />
+          </figure>
+          <div class="group-feed-message-content">
+            <b class="group-user">Test</b>
+            <p class="group-message">Hello</p>
+          </div>
+        </div>
+      </div>
+      <div class="group-feed-form">
+        <input
+          class="input input-size-one"
+          type="text"
+          placeholder="Type your message"
+        />
+        <button class="btn btn-primary">Send</button>
+      </div>
+    </div>
+  </div>
+</article>

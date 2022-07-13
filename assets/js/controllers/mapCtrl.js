@@ -26,5 +26,4 @@ export const mapCtrl = () => {
   };
 
   navigator.geolocation.getCurrentPosition(success, error);
-  console.log(loc)
 };

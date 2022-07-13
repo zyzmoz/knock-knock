@@ -26,7 +26,7 @@ export class Router {
   static async render() {
     const pageHash = window.location.hash;
 
-    const routeObj = Router.pages.find((page) => page.pageId === pageHash);
+    const routeObj = Router.pages.find((page) => page.pageId === pageHash) || Router.pages[0];
     if (routeObj?.isProtected && !Router.authGuard()) {
       return;
     } else {

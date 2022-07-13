@@ -24,7 +24,16 @@ const authGuard = async () => {
   return userAuthState;
 };
 
+/**:thun
+ *
+ * @param {string} currentPage
+ * @param {object} loggedInUser
+ */
 const updateNavbar = (currentPage, loggedInUser) => {
+  if (currentPage === '') {
+    currentPage = '#home';
+  }
+
   if (loggedInUser === null) {
     loggedOutNavbar.classList.add('td-active-nav');
     loggedOutSideBar.classList.add('m-active-nav');
@@ -42,8 +51,11 @@ const updateNavbar = (currentPage, loggedInUser) => {
   }
 };
 
-// on page change - update navbar
-window.addEventListener('hashchange', async () => {
+window.addEventListener('load', () => {
+  renderNavBar();
+});
+
+export const renderNavBar = async () => {
   loggedOutNavbar.classList.remove('td-active-nav');
   loggedInNavbar.classList.remove('td-active-nav');
   createListingNavbar.classList.remove('td-active-nav');
@@ -52,8 +64,19 @@ window.addEventListener('hashchange', async () => {
   loggedInSideBar.classList.remove('m-active-nav');
 
   const currentPage = window.location.hash;
-  const loggedInUser = await getUser(userAuthState?.uid);
+  let loggedInUser = null;
+
+  if (userAuthState) {
+    while (!loggedInUser) {
+      loggedInUser = await getUser(userAuthState?.uid);
+    }
+  }
   updateNavbar(currentPage, loggedInUser);
+};
+
+// on page change - update navbar
+window.addEventListener('hashchange', () => {
+  renderNavBar();
 });
 
 const toggleSidebar = async (icon) => {
@@ -78,12 +101,6 @@ const openLoginBtn = () => {
 mOpenLoginBtn?.addEventListener('click', openLoginBtn);
 tdOpenLoginBtn?.addEventListener('click', openLoginBtn);
 
-// logoutBtn?.addEventListener('click', () => {
-//   authCtrl.logoutCtrl();
-//   loggedInSideBar.classList.remove('m-active-nav');
-//   window.location.replace('#home');
-// });
-
 const openRegisterBtn = () => {
   authModal.classList.toggle('is-open');
   registerForm.classList.toggle('is-open');
@@ -105,12 +122,7 @@ toggleToLoginBtn?.addEventListener('click', () => {
   authCtrl.loginCtrl();
 });
 
-// signOutBtn?.addEventListener("click", () => {
-//   authCtrl.logout();
-//   window.location.replace("#home");
-// });
-
-const closeModal = () => {
+export const closeModal = () => {
   authModal.classList.remove('is-open');
   registerForm.classList.remove('is-open');
   loginForm.classList.remove('is-open');
@@ -127,8 +139,8 @@ const routes = [
   new Route('#home', '/pages/home.html'),
   new Route('#storybook', '/pages/dev/storybook.html', [storybookCtrl, mapCtrl], false),
   new Route('#profile', '/pages/profile.html', [profileCtrl, authCtrl.logoutCtrl], true),
-  new Route('#groups', '/pages/groups.html'),
-  new Route('#group', '/pages/group.html'),
+  new Route('#groups', '/pages/groups.html', () => {}, true),
+  new Route('#group', '/pages/group.html', () => {}, true),
   new Route('#listing', '/pages/listing.html', [listingCtrl]),
 ];
 

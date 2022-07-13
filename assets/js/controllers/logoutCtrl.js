@@ -7,5 +7,6 @@ export const logoutCtrl = () => {
     await logout();
     loggedInSideBar.classList.remove('m-active-nav');
     window.location.replace('#home');
+    window.location.reload();
   });
 };

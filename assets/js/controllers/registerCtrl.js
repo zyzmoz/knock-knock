@@ -1,28 +1,29 @@
+import { closeModal, renderNavBar } from "../../../index.js";
 import { User } from "../classes/User.js";
 import { register } from "../integrations/firebase.js";
 
 export const registerCtrl = () => {
   // password confirmation
   passwordConfirmation.addEventListener("focusout", () => {
-    console.log("here");
     const password = document.getElementById("password").value;
     const passwordConfirmation = document.getElementById(
       "passwordConfirmation"
     ).value;
 
     if (password != passwordConfirmation) {
-
+      loginError.innerHTML = "Passwords don't match";
     }
   });
 
-  registerBtn.addEventListener("click", async() => {
+  registerBtn.addEventListener("click", async () => {
     const passwordOriginal = document.getElementById("password").value;
     const passwordConfirmation = document.getElementById(
       "passwordConfirmation"
     ).value;
 
     if (passwordOriginal != passwordConfirmation) {
-      return
+      Error.innerHTML = "Passwords don't match";
+      return;
     }
 
     const user = new User({
@@ -30,10 +31,17 @@ export const registerCtrl = () => {
       lastName: lastName.value,
       email: email.value,
       password: passwordOriginal,
+      photoUrl: "https://picsum.photos/200/200",
     });
-    console.log(user);
-    const res = await register(user);
+    const { error } = await register(user);
+    
+    if (error) {
+      registerError.innerHTML = error.message;
+      return;
+    }
 
-    console.log({res})
+    closeModal();
+    renderNavBar();
+    window.location.replace("#home");
   });
 };

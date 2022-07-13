@@ -1,10 +1,10 @@
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.8.3/firebase-app.js';
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-app.js";
 import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-} from 'https://www.gstatic.com/firebasejs/9.8.3/firebase-auth.js';
+} from "https://www.gstatic.com/firebasejs/9.8.3/firebase-auth.js";
 import {
   getDatabase,
   set,
@@ -12,11 +12,11 @@ import {
   child,
   get,
   onValue,
-} from 'https://www.gstatic.com/firebasejs/9.8.3/firebase-database.js';
+} from "https://www.gstatic.com/firebasejs/9.8.3/firebase-database.js";
 
-import config from '../../../config.json' assert { type: 'json' };
+import config from "../../../config.json" assert { type: "json" };
 
-import { buildError } from '../utils/firebaseErrors.js';
+import { buildError } from "../utils/firebaseErrors.js";
 
 // Initialize Firebase
 const app = initializeApp(config.firebaseConfig);
@@ -30,7 +30,6 @@ auth.onAuthStateChanged(async (user) => {
     userAuthState = user;
   } else {
     userAuthState = null;
-    console.log('Not signed in');
   }
 });
 
@@ -41,7 +40,9 @@ auth.onAuthStateChanged(async (user) => {
  * @returns
  */
 const login = async (email, password) => {
-  const res = await signInWithEmailAndPassword(auth, email, password);
+  const res = await signInWithEmailAndPassword(auth, email, password).catch(
+    (error) => ({ error })
+  );
   if (res?.error) {
     return { error: buildError(res.error) };
   }
@@ -55,18 +56,22 @@ const login = async (email, password) => {
  * @returns
  */
 const register = async (user) => {
-  const { firstName, lastName, email, password } = user;
-  let res = await createUserWithEmailAndPassword(auth, email, password).catch((error) => ({ error }));
+  const { firstName, lastName, email, password, photoUrl } = user;
+  let res = await createUserWithEmailAndPassword(auth, email, password).catch(
+    (error) => ({ error })
+  );
+
   if (res?.error) {
     return { error: buildError(res.error) };
   }
 
   const { uid } = res.user;
-
-  res = await set(ref(database, 'users/' + uid), {
+  console.log({ newuser: user });
+  res = await set(ref(database, "users/" + uid), {
     firstName: firstName,
     lastName: lastName,
     email: email,
+    photoUrl,
   }).catch((error) => ({ error }));
 
   if (res?.error) {

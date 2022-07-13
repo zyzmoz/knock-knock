@@ -25,10 +25,106 @@
       integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
       crossorigin="*"
     ></script>
-
   </head>
   <body>
     <header>
+      <nav>
+        <div class="mobile-view">
+          <div class="m-nav">
+            <div class="logo-group">
+              <img src="./assets/icons/Logo/logo-light-no-text.svg" alt="Knock Knock Logo" class="logo-icon" />
+            </div>
+            <div class="nav-items">
+              <img src="./assets/icons/Other/search.svg" alt="Search Icon" class="search-icon" />
+              <img src="./assets/icons/Other/bell.svg" alt="Bell Icon" class="bell-icon" />
+              <img src="./assets/icons/Other/hamburger.svg" alt="Hamburger Icon" class="hamburger-icon" />
+            </div>
+          </div>
+
+          <div class="logged-out-sidebar">
+            <img src="./assets/icons/Cross/cross.svg" alt="Cross Icon" class="cross-icon" />
+            <div class="sidebar-items">
+              <p><a href="#listing">List property</a></p>
+              <p id="mOpenLoginBtn">Login</p>
+              <p id="mOpenRegisterBtn">Register</p>
+              <p>About us</p>
+              <p>FAQ's</p>
+            </div>
+          </div>
+
+          <div class="logged-in-sidebar">
+            <img src="./assets/icons/Cross/cross.svg" alt="Cross Icon" class="cross-icon" />
+            <div class="sidebar-items">
+              <p><a href="#listing">List property</a></p>
+              <p><a href="#groups">My groups</a></p>
+              <p>About us</p>
+              <p>FAQ's</p>
+              <p>Logout</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tablet-and-desktop-view">
+          <div class="td-logged-out td-active-nav">
+            <div class="logo-group">
+              <a href="#home"
+                ><img src="./assets/icons/Logo/logo-light-no-text.svg" alt="Knock Knock Logo" class="logo-icon"
+              /></a>
+              <p class="logo-title"><a href="#home">Knock Knock</a></p>
+            </div>
+            <div class="searchbar-group">
+              <input type="text" class="searchbar" placeholder="Search..." />
+              <img src="./assets/icons/Location/location-background.svg" alt="Searchbar Icon" class="searchbar-icon" />
+            </div>
+            <div class="nav-items">
+              <p>List property</p>
+              <p id="tdOpenLoginBtn">Login</p>
+              <p id="tdOpenRegisterBtn">Register</p>
+            </div>
+          </div>
+
+          <div class="td-logged-in">
+            <div class="logo-group">
+              <a href="#home"
+                ><img src="./assets/icons/Logo/logo-light-no-text.svg" alt="Knock Knock Logo" class="logo-icon"
+              /></a>
+              <p class="logo-title"><a href="#home">Knock Knock</a></p>
+            </div>
+            <div class="searchbar-group">
+              <input type="text" class="searchbar" placeholder="Search..." />
+              <img src="./assets/icons/Location/location-background.svg" alt="Searchbar Icon" class="searchbar-icon" />
+            </div>
+            <div class="nav-items">
+              <p><a href="#listing">List property</a></p>
+              <p><a href="#groups">My groups</a></p>
+              <img src="./assets/icons/Other/bell.svg" alt="Bell Icon" class="bell-icon" />
+              <div class="user-group">
+                <a href="#profile"><img alt="" class="user-image" /></a>
+                <p class="user-name"><a href="#profile"></a></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="td-create-listing">
+            <div class="logo-group">
+              <a href="#home"
+                ><img src="./assets/icons/Logo/logo-light-no-text.svg" alt="Knock Knock Logo" class="logo-icon"
+              /></a>
+              <p class="logo-title"><a href="#home">Knock Knock</a></p>
+            </div>
+            <div class="nav-items">
+              <img src="./assets/icons/Other/bell.svg" alt="Bell Icon" class="bell-icon" />
+              <div class="user-group">
+                <a href="#profile"><img alt="" class="user-image" /></a>
+                <p class="user-name"><a href="#profile"></a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- <header>
       <nav>
         <ul>
           <li><a href="#home">home</a></li>
@@ -39,7 +135,7 @@
           <li id="openRegisterBtn">Register</li>
         </ul>
       </nav>
-    </header>
+    </header> -->
     <div class="auth-modal" id="authModal">
       <div id="loginForm" class="form login-form size-33 center-margin">
         <h2>Login</h2>
@@ -60,9 +156,7 @@
           required
         /><br />
         <button id="loginBtn" class="btn btn-primary">Login</button><br />
-        <button id="toggleToRegisterBtn" class="btn btn-secondary">
-          don't have an account? REGISTER
-        </button>
+        <button id="toggleToRegisterBtn" class="btn btn-secondary">don't have an account? REGISTER</button>
       </div>
       <div id="registerForm" class="form register-form size-33 center-margin">
         <h2>Register</h2>

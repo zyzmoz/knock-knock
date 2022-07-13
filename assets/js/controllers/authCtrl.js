@@ -1,5 +1,5 @@
 import { loginCtrl } from "./loginCtrl.js";
+import { logoutCtrl } from "./logoutCtrl.js";
 import { registerCtrl } from "./registerCtrl.js";
-import { logout } from "../integrations/firebase.js";
 
-export default { loginCtrl, registerCtrl, logout };
+export default { loginCtrl, logoutCtrl, registerCtrl };

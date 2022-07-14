@@ -4,6 +4,7 @@ import { storybookCtrl } from "./assets/js/controllers/storybookCtrl.js";
 import { mapCtrl } from "./assets/js/controllers/mapCtrl.js";
 import { userAuthState, getUser } from "./assets/js/integrations/firebase.js";
 import { profileCtrl } from "./assets/js/controllers/profileCtrl.js";
+import { groupsCtrl } from "./assets/js/controllers/groupsCtrl.js";
 
 const hamburgerIcons = document.querySelectorAll(".hamburger-icon");
 const crossIcons = document.querySelectorAll(".cross-icon");
@@ -155,7 +156,7 @@ const routes = [
     [profileCtrl, authCtrl.logoutCtrl],
     true
   ),
-  new Route("#groups", "/pages/groups.html", () => {}, true),
+  new Route("#groups", "/pages/groups.html", groupsCtrl, true),
   new Route("#group", "/pages/group.html", () => {}, true),
   new Route("#listing", "/pages/listing.html"),
 ];

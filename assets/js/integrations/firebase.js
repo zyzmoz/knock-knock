@@ -34,6 +34,20 @@ auth.onAuthStateChanged(async (user) => {
   }
 });
 
+export const getAuthState = async (callback = (res) => console.log({authState: res})) => {
+  await auth.onAuthStateChanged(async (user) => {
+    //The callback is passed user parameter from event
+    console.log({uuu: user})
+    if (user) {
+      userAuthState = user;
+    } else {
+      userAuthState = null;
+    }
+    await callback(userAuthState)
+  });
+
+}
+
 /**
  *
  * @param {string} email

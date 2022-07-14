@@ -2,7 +2,12 @@ import { Route, Router } from "./assets/js/classes/router.js";
 import authCtrl from "./assets/js/controllers/authCtrl.js";
 import { storybookCtrl } from "./assets/js/controllers/storybookCtrl.js";
 import { mapCtrl } from "./assets/js/controllers/mapCtrl.js";
-import { userAuthState, getUser } from "./assets/js/integrations/firebase.js";
+import {
+  userAuthState,
+  getUser,
+  findOne,
+  getAuthState,
+} from "./assets/js/integrations/firebase.js";
 import { profileCtrl } from "./assets/js/controllers/profileCtrl.js";
 import { listingCtrl } from "./assets/js/controllers/listingCtrl.js";
 import { createListingCtrl } from "./assets/js/controllers/createListing.js";
@@ -73,9 +78,6 @@ const updateNavbar = (currentPage, loggedInUser) => {
   }
 };
 
-window.addEventListener("load", () => {
-  renderNavBar();
-});
 
 export const renderNavBar = async () => {
   loggedOutNavbar.classList.remove("td-active-nav");
@@ -87,14 +89,15 @@ export const renderNavBar = async () => {
 
   const currentPage = window.location.hash;
   let loggedInUser = null;
+  console.log({ userAuthState });
 
-  if (userAuthState) {
-    while (!loggedInUser) {
-      loggedInUser = await getUser(userAuthState?.uid);
-    }
-  }
+  loggedInUser = await getUser(userAuthState?.uid);
+
   updateNavbar(currentPage, loggedInUser);
 };
+
+getAuthState(renderNavBar)
+
 
 // on page change - update navbar
 window.addEventListener("hashchange", () => {
@@ -173,7 +176,7 @@ const routes = [
   ),
   new Route("#groups", "/pages/groups.html", () => {}, true),
   new Route("#group", "/pages/group.html", () => {}, true),
-  new Route("#listing", "/pages/create-listing.html", createListingCtrl),
+  new Route("#listing", "/pages/create-listing.html", createListingCtrl, true),
 ];
 
 Router.init("root", routes, authGuard);

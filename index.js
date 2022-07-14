@@ -4,6 +4,8 @@ import { storybookCtrl } from "./assets/js/controllers/storybookCtrl.js";
 import { mapCtrl } from "./assets/js/controllers/mapCtrl.js";
 import { userAuthState, getUser } from "./assets/js/integrations/firebase.js";
 import { profileCtrl } from "./assets/js/controllers/profileCtrl.js";
+import { listingCtrl } from "./assets/js/controllers/listingCtrl.js";
+import { createListingCtrl } from "./assets/js/controllers/createListing.js";
 
 const hamburgerIcons = document.querySelectorAll(".hamburger-icon");
 const crossIcons = document.querySelectorAll(".cross-icon");
@@ -15,6 +17,20 @@ const createListingNavbar = document.querySelector(".td-create-listing");
 const userImage = document.querySelectorAll(".user-image");
 const userName = document.querySelectorAll(".user-name");
 
+export let currentLocation;
+const success = (position) => {
+  currentLocation = {
+    lat: position.coords.latitude,
+    lng: position.coords.longitude,
+  };
+};
+
+const error = () => {
+  return { error: "Geolocation is not supported by your brwser" };
+};
+
+navigator.geolocation.getCurrentPosition(success, error);
+
 const authGuard = async () => {
   if (!userAuthState) {
     window.location.replace("#home");
@@ -24,9 +40,9 @@ const authGuard = async () => {
 };
 
 /**:thun
- * 
- * @param {string} currentPage 
- * @param {object} loggedInUser 
+ *
+ * @param {string} currentPage
+ * @param {object} loggedInUser
  */
 const updateNavbar = (currentPage, loggedInUser) => {
   if (currentPage === "") {
@@ -142,7 +158,7 @@ authModal.addEventListener("click", (e) => {
 });
 
 const routes = [
-  new Route("#home", "/pages/home.html"),
+  new Route("#home", "/pages/listing.html", listingCtrl),
   new Route(
     "#storybook",
     "/pages/dev/storybook.html",
@@ -157,7 +173,7 @@ const routes = [
   ),
   new Route("#groups", "/pages/groups.html", () => {}, true),
   new Route("#group", "/pages/group.html", () => {}, true),
-  new Route("#listing", "/pages/listing.html"),
+  new Route("#listing", "/pages/create-listing.html", createListingCtrl),
 ];
 
 Router.init("root", routes, authGuard);

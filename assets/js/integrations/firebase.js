@@ -12,6 +12,7 @@ import {
   child,
   get,
   onValue,
+  push,
 } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-database.js";
 
 import config from "../../../config.json" assert { type: "json" };
@@ -106,7 +107,9 @@ const findMany = async (collection, callback = (res) => {}) => {
   const _ref = ref(database, `${collection}`);
   onValue(_ref, (snapshot) => {
     const data = snapshot.val();
-    callback(data);
+    const ids = Object.keys(data || {});
+    const arr = ids?.map((id) => ({ id, ...data[id] }));
+    callback(arr);
   });
 };
 
@@ -132,14 +135,22 @@ const findOne = async (collection, uid, callback = (res) => {}) => {
  * @returns
  */
 const createOrUpdateData = async (collection, uid, data) => {
-  const updateColletion = uid ? `${collection}/${uid}` : `${collection}`;
-  const res = await set(ref(database, updateColletion), {
-    ...data,
-  }).catch((error) => ({ error }));
+  let res;
+
+  if (uid) {
+    res = await set(ref(database, `${collection}/${uid}`), {
+      ...data,
+    }).catch((error) => ({ error }));
+  } else {
+    res = await push(ref(database, collection), data).catch((error) => ({
+      error,
+    }));
+  }
 
   if (res?.error) {
     return { error: buildError(res.error) };
   }
+  return res;
 };
 
 /**

@@ -15,11 +15,24 @@ export const createListingCtrl = () => {
         lng: data.location.lng,
       },
     };
-    createOrUpdateData("listings", null, listing);
+    return createOrUpdateData("listings", null, listing);
   };
 
-  submitListingBtn.addEventListener("click", () => {
-    createListing({
+  submitListingBtn.addEventListener("click", async () => {
+    if (
+      listingPhotoURL.value == "" ||
+      listingTitle.value == "" ||
+      listingInfo.value == "" ||
+      listingAddress.value == "" ||
+      listingPrice.value == ""
+    ) {
+      listingError.innerHTML =
+        "Please fill all the information before creating a listing!";
+
+      return;
+    }
+
+    const { error } = await createListing({
       photoURL: listingPhotoURL.value,
       title: listingTitle.value,
       info: listingInfo.value,
@@ -27,5 +40,12 @@ export const createListingCtrl = () => {
       price: listingPrice.value,
       location: currentLocation,
     });
+
+    if (error) {
+      listingError.innerHTML = error.message;
+      return;
+    }
+
+    window.location.replace("#home");
   });
 };

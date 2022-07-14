@@ -11,7 +11,7 @@ import {
 import { profileCtrl } from "./assets/js/controllers/profileCtrl.js";
 import { groupsCtrl } from "./assets/js/controllers/groupsCtrl.js";
 import { listingCtrl } from "./assets/js/controllers/listingCtrl.js";
-import { createListingCtrl } from "./assets/js/controllers/createListing.js";
+import { createListingCtrl } from "./assets/js/controllers/createListingCtrl.js";
 
 const hamburgerIcons = document.querySelectorAll(".hamburger-icon");
 const crossIcons = document.querySelectorAll(".cross-icon");

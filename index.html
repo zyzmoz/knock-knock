@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,160 +8,151 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <header>
-<ul>
-    <li><a href="">Type</a></li>
-    <li> <a href="">BedRooms</a></li>
-    <li><a href="">Price</a></li>
-    <li><a href="">Furnished</a></li>
-    <li><a href="">Pet policy</a></li>
-    <li><a href="">More</a></li>
-</ul>
+        <ul>
+            <li><a href="">Type</a></li>
+            <li> <a href="">BedRooms</a></li>
+            <li><a href="">Price</a></li>
+            <li><a href="">Furnished</a></li>
+            <li><a href="">Pet policy</a></li>
+            <li><a href="">More</a></li>
+        </ul>
     </header>
 
     <main>
-    <div id="map">
-        <p>Showing apartments and Houses for rent in Current Location</p>
-        <a href="">View Map</a>
-    </div>
+        <div id="map">
+            <p>Showing apartments and Houses for rent in Current Location</p>
+            <a href="">View Map</a>
+        </div>
 
-<div class="main-thing">
-    <div class="main-container">
-        <img src="https://picsum.photos/600/600?random=17" alt="">
-        <h3 id="title"></h3>
-    <p id="address"></p>
-    <p id="price"></p>
-    </div>
-    <!-- <div class="main-container">
-        <img src="https://picsum.photos/600/600?random=21" alt="">
-        <h3 id="title"></h3>
-        <p id="address"></p>
-        <p id="price"></p>
-    </div>
-    <div class="main-container">
-        <img src="https://picsum.photos/600/600?random=27" alt="">
-        <h3 id="title"></h3>
-        <p id="address"></p>
-        <p id="price"></p>
-    </div>
-    <div class="main-container">
-        <img src="https://picsum.photos/600/600?random=37" alt="">
-        <h3 id="title"></h3>
-        <p id="address"></p>
-        <p id="price"></p>
-    </div>
-    <div class="main-container">
-        <img src="https://picsum.photos/600/600?random=67" alt="">
-        <h3 id="title"></h3>
-        <p id="address"></p>
-        <p id="price"></p>
-    </div>
-    <div class="main-container">
-        <img src="https://picsum.photos/600/600?random=50" alt="">
-        <h3 id="title"></h3>
-        <p id="address"></p>
-        <p id="price"></p>
-    </div> -->
-</div>
-<div id="hello">
 
-</div>
-</main>
+        <div id="hello2">
+
+        </div>
+    </main>
 
 
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.0/firebase-app.js";
-        import { getFirestore,doc,getDoc,onSnapshot,getDocs,setDoc,collection,addDoc,updateDoc,deleteDoc,deleteField } from "https://www.gstatic.com/firebasejs/9.9.0/firebase-firestore.js";
+        import { getFirestore, doc, getDoc, onSnapshot, getDocs, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField } from "https://www.gstatic.com/firebasejs/9.9.0/firebase-firestore.js";
         // TODO: Add SDKs for Firebase products that you want to use
         // https://firebase.google.com/docs/web/setup#available-libraries
-      
+
         // Your web app's Firebase configuration
         // For Firebase JS SDK v7.20.0 and later, measurementId is optional
         const firebaseConfig = {
-          apiKey: "AIzaSyCBynxYibMmaoe46-7GmB91fmY5SbWQp18",
-          authDomain: "knock-knock-5b763.firebaseapp.com",
-          databaseURL: "https://knock-knock-5b763-default-rtdb.firebaseio.com",
-          projectId: "knock-knock-5b763",
-          storageBucket: "knock-knock-5b763.appspot.com",
-          messagingSenderId: "202178218233",
-          appId: "1:202178218233:web:3a4b182696ec7fc144fa28",
-          measurementId: "G-FFS3E34ZQK"
+            apiKey: "AIzaSyCBynxYibMmaoe46-7GmB91fmY5SbWQp18",
+            authDomain: "knock-knock-5b763.firebaseapp.com",
+            databaseURL: "https://knock-knock-5b763-default-rtdb.firebaseio.com",
+            projectId: "knock-knock-5b763",
+            storageBucket: "knock-knock-5b763.appspot.com",
+            messagingSenderId: "202178218233",
+            appId: "1:202178218233:web:3a4b182696ec7fc144fa28",
+            measurementId: "G-FFS3E34ZQK"
         };
-      
+
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const db = getFirestore();
-    
-    const colref = collection(db, "Listings");
-    
-    
-    function GetData(){
-    getDocs(colref).then((snapshot) => {
-        console.log(snapshot.docs)
-        let listings = [];
-        snapshot.docs.forEach((doc) => {
-    listings.push({...doc.data()})
-        })
-        console.log(listings);
-        AllItemsAdd(listings);
-    })
-    .catch(error => {
-        console.log(error.message);
-    })
-    }
 
-//     function GetDataRealTime(){
-//   const dref = collection(db,"listings");
-//   onSnapshot(dref,(querySnapshot) => {
-//     var students = [];
+        const colref = collection(db, "Listings");
 
-//     querySnapshot.forEach(doc => {
-//         listings.push(doc.data());
-//     });
-//         console.log(listings);
-//         AllItemsAdd(listings);
-//     })
-//     .catch(error => {
-//         console.log(error.message);
-//     })
-//     }
 
-    
+        function GetData() {
+            getDocs(colref).then((snapshot) => {
+                console.log(snapshot.docs)
+                let listings = [];
+                snapshot.docs.forEach((doc) => {
+                    listings.push({ ...doc.data() })
+                })
+                console.log(listings);
+                AllItemsAdd(listings);
+            })
+                .catch(error => {
+                    console.log(error.message);
+                })
+        }
 
-    var listingNo = 0;
-    var tbody = document.getElementById('hello');
 
-    function AddItems(listingType,address,price) {
-        var trow = document.getElementById('main-container');
-        var td1 = document.getElementById('title');
-        var td2 = document.getElementById('address');
-        var td3 = document.getElementById('price');
-    
-        td1.innerHTML = listingType;
-        td2.innerHTML = address;
-        td3.innerHTML = price;
+        //     function GetDataRealTime(){
+        //   const dref = collection(db,"listings");
+        //   onSnapshot(dref,(querySnapshot) => {
+        //     var students = [];
 
+        //     querySnapshot.forEach(doc => {
+        //         listings.push(doc.data());
+        //     });
+        //         console.log(listings);
+        //         AllItemsAdd(listings);
+        //     })
+        //     .catch(error => {
+        //         console.log(error.message);
+        //     })
+        //     }
+
+
+
+         // var tbody = document.getElementById('hello');var listingNo = 0;
+       
+        // let pdiv = document.createElement('div');
+
+        function AddItems(listingType, address, price) {
+            // var trow = document.getElementById('main-container');
+            let divmain = document.createElement('div');
+
+            divmain.id = 'content1';
+            divmain.className = 'main-container1';
+
+            // div.id = 'content';
+            // div.className = 'main-container';
+
+            // create a new heading and add it to the div
+            let h2 = document.createElement('h2');
+
+            let p = document.createElement('p');
+            p.id = 'address'
+
+            let p1 = document.createElement('p');
+            p1.id = 'price';
+
+            h2.innerHTML = listingType;
+            p.innerHTML = address;
+            p1.innerHTML = price;
+
+
+          
+
+            let div2 = document.createElement('div');
+            div2.id = 'content';
         
-        // trow.appendChild(td1);
-        // trow.appendChild(td2);
-        // trow.appendChild(td3);
-    
-        // tbody.appendChild(trow);
-    
-    }
-    
-    function AllItemsAdd(StudentDocList) {
-        listingNo =0;
-        tbody.innerHTML ="";
-        StudentDocList.forEach(element => {
-    AddItems(element.title,element.address,element.price);
-        });
-    }
-    
-     window.onload = GetData;
-    
-</script>    
+            h2.innerHTML = listingType;
+            p.innerHTML = address;
+            p1.innerHTML = price;
+            
+            div2.appendChild(h2);
+            div2.appendChild(p);
+            div2.appendChild(p1);
+            
+
+            hello2.appendChild(div2)
+
+
+        }
+
+        function AllItemsAdd(StudentDocList) {
+            // listingNo = 0;
+            // pdiv.innerHTML = "";
+            StudentDocList.forEach(element => {
+                AddItems(element.title, element.address, element.price);
+            });
+        }
+
+        window.onload = GetData;
+
+    </script>
 </body>
+
 </html>

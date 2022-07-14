@@ -34,6 +34,20 @@ auth.onAuthStateChanged(async (user) => {
   }
 });
 
+export const getAuthState = async (callback = (res) => console.log({authState: res})) => {
+  await auth.onAuthStateChanged(async (user) => {
+    //The callback is passed user parameter from event
+    console.log({uuu: user})
+    if (user) {
+      userAuthState = user;
+    } else {
+      userAuthState = null;
+    }
+    await callback(userAuthState)
+  });
+
+}
+
 /**
  *
  * @param {string} email
@@ -107,7 +121,9 @@ const findMany = async (collection, callback = (res) => {}) => {
   const _ref = ref(database, `${collection}`);
   onValue(_ref, (snapshot) => {
     const data = snapshot.val();
-    callback(data);
+    const ids = Object.keys(data || {});
+    const arr = ids?.map((id) => ({ id, ...data[id] }));
+    callback(arr);
   });
 };
 

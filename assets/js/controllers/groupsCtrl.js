@@ -2,18 +2,40 @@ import { Group } from "../classes/Group.js";
 import {
   createOrUpdateData,
   findMany,
+  getAuthState,
+  getUser,
   userAuthState,
 } from "../integrations/firebase.js";
 import { whereIn } from "../utils/queryUtils.js";
-
+let selectedGroupId;
 export const groupsCtrl = async () => {
   let groups = [];
+  groupFeedParticipants.innerHTML = "";
 
-  await findMany("groups", (res) => {
-    const groupsIds = Object.keys(res);
-    groups = groupsIds
-      .map((id) => ({ id, ...res[id] }))
-      .filter((g) => g.invitedUsers?.some((s) => s === userAuthState?.uid));
+  const selectGroup = async (groupId) => {
+    const group = groups.find((g) => g.id === groupId);
+    groupFeedParticipants.innerHTML = "";
+    groupFeedName.innerHTML = group?.groupName;
+    groupFeedParticipants.innerHTML = "";
+    selectedGroupId = group?.id;
+    group?.participants?.map(async (id) => {
+      const user = await getUser(id);
+      groupFeedParticipants.innerHTML += `${user.firstName},`;
+    });
+    groupFeedMessages.innerHTML = "";
+    group?.messages?.map(async (m) => {
+      const el = await createMessageDiv(m);
+      console.log(el);
+      groupFeedMessages.appendChild(el);
+    });
+  };
+
+  findMany("groups", async (res) => {
+    await getAuthState();
+    console.log(userAuthState?.uid);
+    groups = res.filter((g) =>
+      g.participants?.some((s) => s === userAuthState?.uid)
+    );
 
     const gList = document.getElementById("groupList");
 
@@ -26,8 +48,54 @@ export const groupsCtrl = async () => {
         gList.appendChild(createGroupItemDiv(group));
       });
 
-    selectGroup(groups[0]?.id);
+    if (groups && groups.length > 0) {
+      selectGroup(selectedGroupId || groups[0]?.id);
+    }
   });
+
+  const createMessageDiv = async (message) => {
+    const user = await getUser(message?.sentBy);
+    let messageDiv = document.createElement("div");
+    messageDiv.className = "group-feed-message";
+
+    let messageFigure = document.createElement("figure");
+    messageFigure.className = "avatar";
+
+    let avatarImg = document.createElement("img");
+    avatarImg.src = `${user.photoUrl}`;
+
+    messageFigure.appendChild(avatarImg);
+
+    let messageContentDiv = document.createElement("div");
+    messageContentDiv.className = "group-feed-message-content";
+
+    let messageContentB = document.createElement("b");
+    messageContentB.className = "group-user";
+    messageContentB.innerHTML = `${user.firstName} ${user.lastName}`;
+
+    let messageContentP = document.createElement("div");
+    messageContentP.className = "group-message";
+    messageContentP.innerHTML = message.message;
+
+    messageContentDiv.appendChild(messageContentB);
+    messageContentDiv.appendChild(messageContentP);
+
+    messageDiv.appendChild(messageFigure);
+    messageDiv.appendChild(messageContentDiv);
+
+    return messageDiv;
+  };
+
+  const createGroupItemDiv = (group) => {
+    const groupBtn = document.createElement("div");
+    groupBtn.className = "group-list-item";
+    groupBtn.innerHTML = group?.groupName;
+    groupBtn.addEventListener("click", () => {
+      selectGroup(group.id);
+    });
+
+    return groupBtn;
+  };
 
   searchGroups.addEventListener("input", (e) => {
     const gList = document.getElementById("groupList");
@@ -44,37 +112,27 @@ export const groupsCtrl = async () => {
         });
   });
 
-  let selectedGroupId;
-  const selectGroup = async (groupId) => {
-    const group = groups.find((g) => g.id === groupId);
-    console.log(group);
-    groupFeedName.innerHTML = group.groupName;
-    selectedGroupId = group.id;
-  };
-
-  const createGroupItemDiv = (group) => {
-    const groupBtn = document.createElement("div");
-    groupBtn.className = "group-list-item";
-    groupBtn.innerHTML = group.groupName;
-    groupBtn.addEventListener("click", () => {
-      selectGroup(group.id);
-    });
-
-    return groupBtn;
-  };
-
-  submitGroupMessageBtn.addEventListener("click", () => {
-    if (groupMessage.trim() === "") {
+  submitGroupMessageBtn.addEventListener("click", async () => {
+    if (groupMessage.value.trim() === "") {
       return;
     }
+    getAuthState((res) => {
+      const message = {
+        sentBy: userAuthState?.uid,
+        sentAt: new Date().toDateString(),
+        message: groupMessage.value,
+      };
+      let group = groups.find((g) => g.id === selectedGroupId);
+      if (group.messages) {
+        group.messages.push(message);
+      } else {
+        group.messages = [message];
+      }
 
-    const message = {
-      sentBy: userAuthState?.id,
-      sentAt: new Date().toDateString(),
-      message: groupMessage.value,
-    };
-
-    createOrUpdateData("groups", selectedGroupId, message);
+      console.log(group);
+      groupFeedParticipants.innerHTML = "";
+      createOrUpdateData("groups", selectedGroupId, group);
+    });
   });
 
   createGroupButton.addEventListener("click", () => {
@@ -88,19 +146,18 @@ export const groupsCtrl = async () => {
 
     await findMany("users", async (res) => {
       console.log(res);
-      const invited = Object.keys(res).filter((r) =>
-        whereIn(res[r].email, participants)
-      );
-      console.log({ invited });
+      const invited = res
+        .filter((r) => whereIn(r.email, participants))
+        .map((m) => m.id);
+
+      console.log(userAuthState?.uid);
       const group = new Group({
         groupName: groupName.value,
         invitedUsers: invited,
-        partitipants: [userAuthState?.uid],
+        participants: [userAuthState?.uid],
         createdBy: userAuthState?.uid,
       });
-      console.log("Create Group", group);
       const { error } = await createOrUpdateData("groups", null, group);
-      console.log({ error });
     });
 
     evt.preventDefault();

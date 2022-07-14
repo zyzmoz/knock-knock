@@ -98,7 +98,8 @@
   }
 
   .tablet-and-desktop-view {
-    display: block;
+    width: 100%;
+    display: flex;
   }
 
   .td-logged-out,
@@ -328,7 +329,7 @@
 .group-list-item {
   padding: 1rem;
   font-weight: bold;
-  transition: all .5s;
+  transition: all 0.5s;
   cursor: pointer;
 }
 
@@ -367,6 +368,11 @@
 
 .group-feed-messages {
   padding: 1rem;
+}
+
+/* Listing Page */
+#listingView {
+  padding-top: 1rem;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -404,4 +410,22 @@
 
 .group-feed-form button {
   flex: 0 0 20%;
+}
+#listingView .listing-card {
+  max-width: 430px;
+}
+
+@media screen and (min-width: 600px) {
+  #listingView {
+    flex-flow: row wrap;
+    gap: 0.5rem;
+  }
+  #listingView .listing-card {
+    max-width: 320px;
+  }
+}
+@media screen and (min-width: 1220px) {
+  #listingView .listing-card {
+    max-width: 20%;
+  }
 }

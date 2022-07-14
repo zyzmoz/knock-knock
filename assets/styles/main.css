@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bevan&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bevan&display=swap");
 
 /* Mobile */
 .tablet-and-desktop-view {
@@ -42,7 +42,7 @@
 .nav-items {
   gap: 1.4rem;
   justify-content: flex-end;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   font-weight: 700;
   font-size: 16px;
 }
@@ -76,7 +76,7 @@
   gap: 1.4rem;
   justify-content: flex-end;
   flex-flow: column nowrap;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   font-weight: 700;
   font-size: 20px;
   padding: 0 2rem;
@@ -98,7 +98,8 @@
   }
 
   .tablet-and-desktop-view {
-    display: block;
+    width: 100%;
+    display: flex;
   }
 
   .td-logged-out,
@@ -171,7 +172,7 @@
   }
 
   .searchbar::placeholder {
-    font-family: 'Nunito';
+    font-family: "Nunito";
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -198,7 +199,7 @@
   }
 
   .logo-title {
-    font-family: 'Bevan', cursive;
+    font-family: "Bevan", cursive;
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
@@ -266,4 +267,32 @@
 /* PROFILE */
 .profile h1 {
   text-align: center;
+}
+
+/* Listing Page */
+#listingView {
+  padding-top: 1rem;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+}
+
+#listingView .listing-card {
+  max-width: 430px;
+}
+
+@media screen and (min-width: 600px) {
+  #listingView {
+    flex-flow: row wrap;
+    gap: .5rem;
+  }
+  #listingView .listing-card {
+    max-width: 320px;
+  }
+}
+@media screen and (min-width: 1220px) {
+  #listingView .listing-card {
+    max-width: 20%;
+  }
+  
 }

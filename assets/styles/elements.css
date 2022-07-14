@@ -18,6 +18,11 @@ h6 {
   font-weight: 700;
 }
 
+.wrapper {
+  margin: 0;
+  padding: 1rem;
+}
+
 .storybook-container {
   padding: 1rem 0;
 }
@@ -165,4 +170,39 @@ textarea {
   color: red;
   font-size: 16pt;
   padding: 0.5rem;
+}
+
+
+/* LISTING */
+.listing-card {
+  padding: 1rem;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #b2b2b2;
+}
+
+.listing-card img {
+  border-radius: 16px 16px 0 0;
+}
+
+.listing-description {
+  display: flex;
+  flex-flow: column wrap;
+  border-bottom: 1px solid #b2b2b2;
+  padding-bottom: .5rem;
+  margin-bottom: .5rem;
+}
+
+.listing-title h2 {
+  padding-bottom: 1rem;
+}
+
+.listing-address {
+  margin-top: .5rem;
+}
+
+.listing-price {
+  display: flex;
+  flex-flow: row-reverse nowrap;
+  font-weight: bold;
 }

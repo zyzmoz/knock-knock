@@ -9,6 +9,7 @@ import {
   getAuthState,
 } from "./assets/js/integrations/firebase.js";
 import { profileCtrl } from "./assets/js/controllers/profileCtrl.js";
+import { groupsCtrl } from "./assets/js/controllers/groupsCtrl.js";
 import { listingCtrl } from "./assets/js/controllers/listingCtrl.js";
 import { createListingCtrl } from "./assets/js/controllers/createListingCtrl.js";
 
@@ -174,7 +175,7 @@ const routes = [
     [profileCtrl, authCtrl.logoutCtrl],
     true
   ),
-  new Route("#groups", "/pages/groups.html", () => {}, true),
+  new Route("#groups", "/pages/groups.html", groupsCtrl, true),
   new Route("#group", "/pages/group.html", () => {}, true),
   new Route("#listing", "/pages/create-listing.html", createListingCtrl, true),
 ];

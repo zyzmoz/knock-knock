@@ -156,9 +156,7 @@ const createOrUpdateData = async (collection, uid, data) => {
       ...data,
     }).catch((error) => ({ error }));
   } else {
-    res = await push(ref(database, collection), data).catch((error) => ({
-      error,
-    }));
+    res = await push(ref(database,collection), data).catch((error) => ({ error }));
   }
 
   if (res?.error) {

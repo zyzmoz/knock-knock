@@ -1,12 +1,73 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <h1>Groups</h1>
-</body>
-</html>
+<article onload="load()" id="groupsView" class="groups-container">
+  <div id="createGroupsModal" class="modal">
+    <form class="form center-margin size-33">
+      <h1>Create a new Group</h1>
+      <label>Group Name</label>
+      <input
+        id="groupName"
+        class="input input-size-one"
+        type="text"
+        placeholder="Input text size one"
+      />
+      <label>Group Participants</label>
+
+      <input
+        id="groupParticipants"
+        class="input input-size-one"
+        type="text"
+        placeholder="Input text size one"
+      />
+
+      <button id="submitGroupCreationBtn" type="submit" class="btn btn-primary">
+        Create Group
+      </button>
+      <button id="cancelGroupCreationBtn" class="btn btn-secondary">
+        Cancel
+      </button>
+    </form>
+  </div>
+  <div class="groups-header">
+    <h1>Manage Groups</h1>
+    <button class="btn btn-primary" id="createGroupButton">Create</button>
+  </div>
+  <div class="groups-content">
+    <div class="group-list">
+      <div class="group-list-title">All Groups</div>
+      <div class="group-list-search-container">
+        <input id="searchGroups" class="input input-size-one" type="text" placeholder="Search" />
+      </div>
+      <div id="groupList" class="group-list-content">
+        <div class="group-list-item">No Groups Available</div>
+      </div>
+    </div>
+    <div class="group-feed">
+      <div class="group-feed-header">
+        <div class="group-feed-title">
+          <div id="groupFeedName" class="group-feed-name">Group Test</div>
+          <div class="group-feed-actions">...</div>
+        </div>
+        <p id="groupFeedParticipants" class="group-feed-participants"></p>
+      </div>
+      <div id="groupFeedMessages" class="group-feed-messages">
+        <div class="group-feed-message">
+          <figure class="avatar">
+            <img src="https://picsum.photos/200/200" alt="" />
+          </figure>
+          <div class="group-feed-message-content">
+            <b class="group-user">Test</b>
+            <p class="group-message">Hello</p>
+          </div>
+        </div>
+      </div>
+      <div class="group-feed-form">
+        <input
+          id="groupMessage"
+          class="input input-size-one"
+          type="text"
+          placeholder="Type your message"
+        />
+        <button id="submitGroupMessageBtn" class="btn btn-primary">Send</button>
+      </div>
+    </div>
+  </div>
+</article>

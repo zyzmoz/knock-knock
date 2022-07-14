@@ -1,10 +1,11 @@
 import { currentLocation } from "../../../index.js";
 import { Listing } from "../classes/Listing.js";
-import { createOrUpdateData } from "../integrations/firebase.js";
+import { createOrUpdateData, userAuthState } from "../integrations/firebase.js";
 
 export const createListingCtrl = () => {
   const createListing = (data) => {
     const listing = {
+      createdBy: userAuthState?.uid,
       photoURL: data.photoURL,
       title: data.title,
       info: data.info,

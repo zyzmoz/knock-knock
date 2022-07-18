@@ -347,5 +347,6 @@ export const listingCtrl = async () => {
     await createOrUpdateData("listings", null, listing);
 
     createListingForm.reset();
+    window.location.replace('#home')
   });
 };

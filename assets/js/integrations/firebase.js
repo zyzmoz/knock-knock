@@ -1,10 +1,10 @@
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.8.3/firebase-app.js';
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-app.js";
 import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-} from 'https://www.gstatic.com/firebasejs/9.8.3/firebase-auth.js';
+} from "https://www.gstatic.com/firebasejs/9.8.3/firebase-auth.js";
 import {
   getDatabase,
   set,
@@ -12,18 +12,20 @@ import {
   child,
   get,
   onValue,
-} from 'https://www.gstatic.com/firebasejs/9.8.3/firebase-database.js';
+  push,
+} from "https://www.gstatic.com/firebasejs/9.8.3/firebase-database.js";
+
 import {
   getStorage,
   getDownloadURL,
   deleteObject,
   ref as sRef,
   uploadBytes,
-} from 'https://www.gstatic.com/firebasejs/9.8.3/firebase-storage.js';
+} from "https://www.gstatic.com/firebasejs/9.8.3/firebase-storage.js";
 
-import config from '../../../config.json' assert { type: 'json' };
+import config from "../../../config.json" assert { type: "json" };
 
-import { buildError } from '../utils/firebaseErrors.js';
+import { buildError } from "../utils/firebaseErrors.js";
 
 // Initialize Firebase
 const app = initializeApp(config.firebaseConfig);
@@ -41,6 +43,21 @@ auth.onAuthStateChanged(async (user) => {
   }
 });
 
+export const getAuthState = async (
+  callback = (res) => console.log({ authState: res })
+) => {
+  await auth.onAuthStateChanged(async (user) => {
+    //The callback is passed user parameter from event
+    console.log({ uuu: user });
+    if (user) {
+      userAuthState = user;
+    } else {
+      userAuthState = null;
+    }
+    await callback(userAuthState);
+  });
+};
+
 /**
  *
  * @param {string} email
@@ -48,7 +65,9 @@ auth.onAuthStateChanged(async (user) => {
  * @returns
  */
 const login = async (email, password) => {
-  const res = await signInWithEmailAndPassword(auth, email, password).catch((error) => ({ error }));
+  const res = await signInWithEmailAndPassword(auth, email, password).catch(
+    (error) => ({ error })
+  );
   if (res?.error) {
     return { error: buildError(res.error) };
   }
@@ -63,7 +82,9 @@ const login = async (email, password) => {
  */
 const register = async (user) => {
   const { firstName, lastName, email, password, photoUrl } = user;
-  let res = await createUserWithEmailAndPassword(auth, email, password).catch((error) => ({ error }));
+  let res = await createUserWithEmailAndPassword(auth, email, password).catch(
+    (error) => ({ error })
+  );
 
   if (res?.error) {
     return { error: buildError(res.error) };
@@ -71,7 +92,7 @@ const register = async (user) => {
 
   const { uid } = res.user;
   console.log({ newuser: user });
-  res = await set(ref(database, 'users/' + uid), {
+  res = await set(ref(database, "users/" + uid), {
     firstName: firstName,
     lastName: lastName,
     email: email,
@@ -110,7 +131,9 @@ const findMany = async (collection, callback = (res) => {}) => {
   const _ref = ref(database, `${collection}`);
   onValue(_ref, (snapshot) => {
     const data = snapshot.val();
-    callback(data);
+    const ids = Object.keys(data || {});
+    const arr = ids?.map((id) => ({ id, ...data[id] }));
+    callback(arr);
   });
 };
 
@@ -120,7 +143,11 @@ const findMany = async (collection, callback = (res) => {}) => {
  * @param {string} uid
  * @param {Function} callback
  */
-const findOne = async (collection, uid, callback = (res) => console.log(res)) => {
+const findOne = async (
+  collection,
+  uid,
+  callback = (res) => console.log(res)
+) => {
   const _ref = ref(database, `${collection}/${uid}`);
   onValue(_ref, (snapshot) => {
     const data = snapshot.val();
@@ -136,14 +163,22 @@ const findOne = async (collection, uid, callback = (res) => console.log(res)) =>
  * @returns
  */
 const createOrUpdateData = async (collection, uid, data) => {
-  const updateColletion = uid ? `${collection}/${uid}` : `${collection}`;
-  const res = await set(ref(database, updateColletion), {
-    ...data,
-  }).catch((error) => ({ error }));
+  let res;
+
+  if (uid) {
+    res = await set(ref(database, `${collection}/${uid}`), {
+      ...data,
+    }).catch((error) => ({ error }));
+  } else {
+    res = await push(ref(database, collection), data).catch((error) => ({
+      error,
+    }));
+  }
 
   if (res?.error) {
     return { error: buildError(res.error) };
   }
+  return res;
 };
 
 /**

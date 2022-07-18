@@ -184,7 +184,7 @@ export const listingCtrl = async () => {
     listingLocation = JSON.parse(listingLocation.location);
 
     let listing = new Listing({
-      createdBy: user.firstName + ' ' + user.lastName,
+      createdBy: userAuthState.uid,//user.firstName + ' ' + user.lastName,
       createdAt: new Date().toISOString(),
       propertyType: propertyType.value,
       propertyDescription: propertyDescription.value,

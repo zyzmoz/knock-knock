@@ -5,6 +5,8 @@ import { mapCtrl } from './assets/js/controllers/mapCtrl.js';
 import { userAuthState, getUser } from './assets/js/integrations/firebase.js';
 import { profileCtrl } from './assets/js/controllers/profileCtrl.js';
 import { listingCtrl } from './assets/js/controllers/listingCtrl.js';
+import { homeCtrl } from './assets/js/controllers/homeCtrl.js';
+import { groupsCtrl } from './assets/js/controllers/groupsCtrl.js';
 
 const hamburgerIcons = document.querySelectorAll('.hamburger-icon');
 const crossIcons = document.querySelectorAll('.cross-icon');
@@ -16,6 +18,20 @@ const createListingNavbar = document.querySelector('.td-create-listing');
 const userImage = document.querySelectorAll('.user-image');
 const userName = document.querySelectorAll('.user-name');
 const sidebarItems = document.querySelectorAll('.sidebar-items');
+
+export let currentLocation;
+const success = (position) => {
+  currentLocation = {
+    lat: position.coords.latitude,
+    lng: position.coords.longitude,
+  };
+};
+
+const error = () => {
+  return { error: "Geolocation is not supported by your brwser" };
+};
+
+navigator.geolocation.getCurrentPosition(success, error);
 
 const authGuard = async () => {
   if (!userAuthState) {
@@ -62,6 +78,9 @@ export const renderNavBar = async () => {
 
   const currentPage = window.location.hash;
   let loggedInUser = null;
+  console.log({ userAuthState });
+
+  loggedInUser = await getUser(userAuthState?.uid);
 
   if (userAuthState) {
     loggedInUser = await getUser(userAuthState?.uid);
@@ -142,12 +161,11 @@ authModal.addEventListener('click', (e) => {
 });
 
 const routes = [
-  new Route('#home', '/pages/home.html'),
+  new Route('#home', '/pages/home.html', homeCtrl),
   new Route('#storybook', '/pages/dev/storybook.html', [storybookCtrl, mapCtrl], false),
   new Route('#profile', '/pages/profile.html', [profileCtrl, authCtrl.logoutCtrl], true),
-  new Route('#groups', '/pages/groups.html', () => {}, true),
-  new Route('#group', '/pages/group.html', () => {}, true),
-  new Route('#listing', '/pages/listing.html', [listingCtrl, mapCtrl]),
+  new Route('#groups', '/pages/groups.html', groupsCtrl, true),
+  new Route('#listing', '/pages/listing.html', [listingCtrl, mapCtrl], true),
 ];
 
 Router.init('root', routes, authGuard);

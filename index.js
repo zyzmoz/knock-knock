@@ -165,7 +165,7 @@ const routes = [
   new Route('#storybook', '/pages/dev/storybook.html', [storybookCtrl, mapCtrl], false),
   new Route('#profile', '/pages/profile.html', [profileCtrl, authCtrl.logoutCtrl], true),
   new Route('#groups', '/pages/groups.html', groupsCtrl, true),
-  new Route('#listing', '/pages/listing.html', [listingCtrl, mapCtrl], true),
+  new Route('#listing', '/pages/listing.html', [listingCtrl], true),
 ];
 
 Router.init('root', routes, authGuard);

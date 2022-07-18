@@ -1,6 +1,23 @@
 import { findMany } from "../integrations/firebase.js";
 
 export const homeCtrl = () => {
+  let map = L.map("listingMap");
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19,
+    attribution: "© OpenStreetMap",
+  }).addTo(map);
+
+  const success = (position) => {
+    console.log(position);
+    map.setView([position.coords.latitude, position.coords.longitude], 13);
+  };
+
+  const error = () => {
+    return { error: "Geolocation is not supported by your brwser" };
+  };
+
+  navigator.geolocation.getCurrentPosition(success, error);
+
   const createListingCard = (listing) => {
     let cardDiv = document.createElement("div");
 
@@ -43,9 +60,26 @@ export const homeCtrl = () => {
     return cardDiv;
   };
 
+  toggleMap.addEventListener("click", () => {
+    if (listingMap.classList.toString().includes('show')) {
+      toggleMapStatus.innerHTML = 'View'
+    } else {
+      toggleMapStatus.innerHTML = 'Hide'
+    }
+    listingMap.classList.toggle("show");
+  });
+
   findMany("listings", (res) => {
+    listingMessage.innerHTML = `<b>Showing ${
+      res?.length || 0
+    } apartment(s) and house(s)</b>`;
     listingView.innerHTML = "";
     res?.map((r) => {
+      let marker = L.marker([
+        r.propertyAddress.location.lat,
+        r.propertyAddress.location.lng,
+      ]).addTo(map);
+
       listingView.appendChild(createListingCard(r));
     });
   });

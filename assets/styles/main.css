@@ -615,12 +615,67 @@ input[type='checkbox'] {
 }
 
 /* Listing Page */
+.listing-view-wrapper {
+  display: flex;
+  width: 100%;
+  flex-flow: column nowrap;
+}
+
+.listing-view-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row wrap;
+  align-items: center;
+  padding: 1rem;
+}
+
+.listing-view-header button {
+  max-height: 48px;
+}
+
+#listingMap {
+  width: 100%;
+  height: 45vh;
+}
+
+#listingMap.leaflet-container  {
+  position: absolute;
+visibility: hidden;
+}
+
+#listingMap.leaflet-container.show  {
+  position: relative;
+  visibility: visible;
+}
+
 #listingView {
   padding-top: 1rem;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
 }
+
+#listingView .listing-card {
+  max-width: 430px;
+}
+
+
+@media screen and (min-width: 600px) {
+  #listingView {
+    flex-flow: row wrap;
+    gap: 0.5rem;
+  }
+  #listingView .listing-card {
+    max-width: 320px;
+  }
+}
+@media screen and (min-width: 1220px) {
+  #listingView .listing-card {
+    max-width: 20%;
+  }
+}
+
 
 .group-feed-message {
   display: flex;
@@ -654,22 +709,4 @@ input[type='checkbox'] {
 
 .group-feed-form button {
   flex: 0 0 20%;
-}
-#listingView .listing-card {
-  max-width: 430px;
-}
-
-@media screen and (min-width: 600px) {
-  #listingView {
-    flex-flow: row wrap;
-    gap: 0.5rem;
-  }
-  #listingView .listing-card {
-    max-width: 320px;
-  }
-}
-@media screen and (min-width: 1220px) {
-  #listingView .listing-card {
-    max-width: 20%;
-  }
 }

@@ -165,7 +165,7 @@ textarea::placeholder {
   font-weight: 400;
 }
 
-#map {
+#map, #createListingMap {
   height: 300px;
 }
 

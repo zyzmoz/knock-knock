@@ -155,6 +155,7 @@
 
   .searchbar-group {
     position: relative;
+    max-width: fit-content;
   }
 
   .searchbar {
@@ -167,7 +168,7 @@
 
   .searchbar-icon {
     position: absolute;
-    right: 1rem;
+    right: 5%;
   }
 
   .searchbar::placeholder {
@@ -269,6 +270,44 @@
 }
 
 /* CREATE LISTING */
+.create-listing-wrapper h2 {
+  color: #ff9d44;
+  margin-bottom: 1rem;
+}
+
+.input-group-header {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+}
+
+.checkbox-header {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 150%;
+  color: #595959;
+  margin-bottom: 0.4rem;
+}
+
+.checkboxes {
+  max-width: 450px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 0 0 1rem;
+}
+
+.textarea-info-text {
+  margin-bottom: 1rem;
+  color: #8d8d8d;
+}
+
+.create-listing-wrapper #map {
+  width: 522px;
+  height: 180px;
+}
+
 .create-listing-wrapper {
   max-width: 1200px;
   display: block;
@@ -280,38 +319,193 @@
 .create-listing-wrapper label,
 .create-listing-wrapper textarea {
   display: block;
-  padding: 0.2rem;
 }
 
-.create-listing-wrapper select {
-  padding: 0.2rem 0.8rem;
+.create-listing-wrapper textarea {
+  border-radius: 10px;
+}
+
+.create-listing-wrapper textarea:focus {
+  outline: none;
 }
 
 .create-listing-wrapper input {
   margin-bottom: 0.4rem;
 }
 
+.listing-btns {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 2rem 8rem;
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background-color: #fff;
+  z-index: 10;
+}
+
+.listing-btns div:last-of-type {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 0.6rem;
+  justify-content: flex-end;
+}
+
 .input-group {
-  margin-bottom: 1rem;
-  padding: 1rem;
-  background-color: #eef;
+  margin-bottom: 2rem;
 }
 
 .step {
-  padding: 1rem;
-  border: 1px solid #000;
-  margin: 1rem 0 3rem;
-}
-
-.btns {
-  text-align: right;
-}
-
-.btns button {
-  padding: 0.2rem 0.8rem;
+  padding: 2rem 0 1rem;
+  display: none;
 }
 
 .checkbox input,
 .checkbox label {
   display: inline;
+}
+
+.rooms-counter {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.decrement-icon,
+.increase-icon {
+  width: 1.5rem;
+}
+
+.decrement-icon:hover,
+.increase-icon:hover {
+  cursor: pointer;
+}
+
+.counterValue {
+  color: #8d8d8d;
+  font-size: 1.2rem;
+}
+
+.rooms {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 400px;
+  align-items: center;
+  margin: 1.4rem 0;
+}
+
+.rooms > label {
+  font-size: 1.2rem;
+}
+
+.rooms:last-of-type {
+  margin-bottom: 3rem;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+input[type='checkbox'] {
+  width: 18px;
+  height: 18px;
+}
+
+.checkboxes-pets {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.checkboxes-pets .checkbox {
+  margin-bottom: 0.8rem;
+}
+
+.checkboxes-pets .checkbox input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+}
+
+.pets-section {
+  margin-bottom: 8rem;
+}
+
+.photos-box {
+  max-width: 522px;
+  height: 260px;
+  display: grid;
+  place-items: center;
+  padding: 3rem 6rem;
+  background: #fdfdfd;
+  border: 1px dashed #8d8d8d;
+  border-radius: 10px;
+}
+
+.photos-box h4 {
+  margin-bottom: 0.6rem;
+}
+
+.photos-box p {
+  font-size: 0.9rem;
+  padding: 0.2rem 0;
+  color: #595959;
+}
+
+#uploadedImage {
+  margin-top: 3rem;
+}
+
+.uploaded-photos-box {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 2rem;
+  margin-bottom: 10rem;
+}
+
+.uploaded-photos-box img {
+  width: 120px;
+  height: 120px;
+  border-radius: 8px;
+}
+
+.image-uploads-text {
+  color: #595959;
+  font-size: 1.1rem;
+  font-family: 'Space Grotesk', sans-serif;
+  flex-grow: 1;
+  flex-basis: 100%;
+}
+
+.uploaded-image {
+  position: relative;
+}
+
+.delete-photo-icon {
+  width: 30px !important;
+  position: absolute;
+  top: -46%;
+  right: -10%;
+}
+
+.delete-photo-icon:hover {
+  cursor: pointer;
+}
+
+.listing-header {
+  padding: 2rem 8rem;
+  border-bottom: 1px solid #8d8d8d;
+}
+
+.active-step {
+  display: block;
+}
+
+.hideBtn {
+  display: none;
 }

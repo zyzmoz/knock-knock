@@ -1,10 +1,10 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-app.js";
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.8.3/firebase-app.js';
 import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-} from "https://www.gstatic.com/firebasejs/9.8.3/firebase-auth.js";
+} from 'https://www.gstatic.com/firebasejs/9.8.3/firebase-auth.js';
 import {
   getDatabase,
   set,
@@ -12,16 +12,24 @@ import {
   child,
   get,
   onValue,
-} from "https://www.gstatic.com/firebasejs/9.8.3/firebase-database.js";
+} from 'https://www.gstatic.com/firebasejs/9.8.3/firebase-database.js';
+import {
+  getStorage,
+  getDownloadURL,
+  deleteObject,
+  ref as sRef,
+  uploadBytes,
+} from 'https://www.gstatic.com/firebasejs/9.8.3/firebase-storage.js';
 
-import config from "../../../config.json" assert { type: "json" };
+import config from '../../../config.json' assert { type: 'json' };
 
-import { buildError } from "../utils/firebaseErrors.js";
+import { buildError } from '../utils/firebaseErrors.js';
 
 // Initialize Firebase
 const app = initializeApp(config.firebaseConfig);
 const auth = getAuth(app);
 const database = getDatabase(app);
+const storage = getStorage(app);
 
 let userAuthState = null;
 auth.onAuthStateChanged(async (user) => {
@@ -40,9 +48,7 @@ auth.onAuthStateChanged(async (user) => {
  * @returns
  */
 const login = async (email, password) => {
-  const res = await signInWithEmailAndPassword(auth, email, password).catch(
-    (error) => ({ error })
-  );
+  const res = await signInWithEmailAndPassword(auth, email, password).catch((error) => ({ error }));
   if (res?.error) {
     return { error: buildError(res.error) };
   }
@@ -57,9 +63,7 @@ const login = async (email, password) => {
  */
 const register = async (user) => {
   const { firstName, lastName, email, password, photoUrl } = user;
-  let res = await createUserWithEmailAndPassword(auth, email, password).catch(
-    (error) => ({ error })
-  );
+  let res = await createUserWithEmailAndPassword(auth, email, password).catch((error) => ({ error }));
 
   if (res?.error) {
     return { error: buildError(res.error) };
@@ -67,7 +71,7 @@ const register = async (user) => {
 
   const { uid } = res.user;
   console.log({ newuser: user });
-  res = await set(ref(database, "users/" + uid), {
+  res = await set(ref(database, 'users/' + uid), {
     firstName: firstName,
     lastName: lastName,
     email: email,
@@ -116,7 +120,7 @@ const findMany = async (collection, callback = (res) => {}) => {
  * @param {string} uid
  * @param {Function} callback
  */
-const findOne = async (collection, uid, callback = (res) => {}) => {
+const findOne = async (collection, uid, callback = (res) => console.log(res)) => {
   const _ref = ref(database, `${collection}/${uid}`);
   onValue(_ref, (snapshot) => {
     const data = snapshot.val();
@@ -151,6 +155,26 @@ const deleteData = async (collection, uid) => {
   await ref(database, `${collection}/${uid}`).remove();
 };
 
+const uploadImage = async (file) => {
+  const listingImageRef = sRef(storage, `Listing Images/${file.name}`);
+
+  await uploadBytes(listingImageRef, file);
+};
+
+const getUploadedImage = async (fileName) => {
+  const imagePathReference = sRef(storage, `Listing Images/${fileName}`);
+
+  const url = await getDownloadURL(imagePathReference);
+
+  return url;
+};
+
+const deleteUploadedImage = async (fileName) => {
+  const imagePathReference = sRef(storage, `Listing Images/${fileName}`);
+
+  await deleteObject(imagePathReference);
+};
+
 export {
   app,
   auth,
@@ -164,4 +188,7 @@ export {
   deleteData,
   findOne,
   findMany,
+  uploadImage,
+  getUploadedImage,
+  deleteUploadedImage,
 };

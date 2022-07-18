@@ -1,20 +1,6 @@
 export class Listing {
   constructor(
     props = {
-      // createdBy,
-      // createdAt: new Date().toISOString(),
-      // propertyType,
-      // propertyAddress,
-      // propertyUnitNumber,
-      // propertyDescription,
-      // hideListing: false,
-      // price,
-      // depositValue,
-      // moveInDate,
-      // leaseDuration,
-      // petPolicy,
-      // images: [] // Array of Storage urls
-
       createdBy,
       createdAt: new Date().toISOString(),
       propertyType,
@@ -22,6 +8,7 @@ export class Listing {
       propertyAddress: {
         address,
         unitNumber,
+        location,
       },
       propertyRooms: {
         bedroomCount,
@@ -70,10 +57,11 @@ export class Listing {
         hasOnSiteManagement,
       },
       propertyAllowsPets,
-      propertyAssignedGroup,
+      // propertyAssignedGroup,
       propertyAvailableDate,
       propertyLeasePeriod,
       propertyRentPrice,
+      propertyImages,
     }
   ) {
     return Object.assign(this, props);

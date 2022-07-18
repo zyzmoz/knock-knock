@@ -15,6 +15,7 @@ const loggedInNavbar = document.querySelector('.td-logged-in');
 const createListingNavbar = document.querySelector('.td-create-listing');
 const userImage = document.querySelectorAll('.user-image');
 const userName = document.querySelectorAll('.user-name');
+const sidebarItems = document.querySelectorAll('.sidebar-items');
 
 const authGuard = async () => {
   if (!userAuthState) {
@@ -24,7 +25,7 @@ const authGuard = async () => {
   return userAuthState;
 };
 
-/**:thun
+/**
  *
  * @param {string} currentPage
  * @param {object} loggedInUser
@@ -51,10 +52,6 @@ const updateNavbar = (currentPage, loggedInUser) => {
   }
 };
 
-window.addEventListener('load', () => {
-  renderNavBar();
-});
-
 export const renderNavBar = async () => {
   loggedOutNavbar.classList.remove('td-active-nav');
   loggedInNavbar.classList.remove('td-active-nav');
@@ -67,23 +64,27 @@ export const renderNavBar = async () => {
   let loggedInUser = null;
 
   if (userAuthState) {
-    while (!loggedInUser) {
-      loggedInUser = await getUser(userAuthState?.uid);
-    }
+    loggedInUser = await getUser(userAuthState?.uid);
   }
   updateNavbar(currentPage, loggedInUser);
 };
 
+window.addEventListener('DOMContentLoaded', async () => {
+  await renderNavBar();
+});
+
 // on page change - update navbar
-window.addEventListener('hashchange', () => {
-  renderNavBar();
+window.addEventListener('hashchange', async () => {
+  await renderNavBar();
 });
 
 const toggleSidebar = async (icon) => {
   icon.addEventListener('click', () => {
     if (loggedOutSideBar.classList.contains('m-active-nav')) {
+      loggedInSideBar.classList.remove('sidebar-active');
       loggedOutSideBar.classList.toggle('sidebar-active');
     } else if (loggedInSideBar.classList.contains('m-active-nav')) {
+      loggedOutSideBar.classList.remove('sidebar-active');
       loggedInSideBar.classList.toggle('sidebar-active');
     }
   });
@@ -91,6 +92,11 @@ const toggleSidebar = async (icon) => {
 
 hamburgerIcons.forEach((icon) => toggleSidebar(icon));
 crossIcons.forEach((icon) => toggleSidebar(icon));
+
+sidebarItems.forEach((item) => {
+  let itemChildren = Array.from(item.children);
+  itemChildren.forEach((child) => toggleSidebar(child));
+});
 
 const openLoginBtn = () => {
   authModal.classList.toggle('is-open');
@@ -141,7 +147,7 @@ const routes = [
   new Route('#profile', '/pages/profile.html', [profileCtrl, authCtrl.logoutCtrl], true),
   new Route('#groups', '/pages/groups.html', () => {}, true),
   new Route('#group', '/pages/group.html', () => {}, true),
-  new Route('#listing', '/pages/listing.html', [listingCtrl]),
+  new Route('#listing', '/pages/listing.html', [listingCtrl, mapCtrl]),
 ];
 
 Router.init('root', routes, authGuard);

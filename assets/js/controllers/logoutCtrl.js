@@ -1,12 +1,15 @@
 import { logout } from '../integrations/firebase.js';
 
 export const logoutCtrl = () => {
-  const loggedInSideBar = document.querySelector('.logged-in-sidebar');
+  const logoutBtns = document.querySelectorAll('.logoutBtn');
 
-  logoutBtn.addEventListener('click', async () => {
-    await logout();
-    loggedInSideBar.classList.remove('m-active-nav');
-    window.location.replace('#home');
-    window.location.reload();
-  });
+  const logoutUser = async (btn) => {
+    btn.addEventListener('click', async () => {
+      await logout();
+
+      window.location.reload();
+    });
+  };
+
+  logoutBtns.forEach((btn) => logoutUser(btn));
 };

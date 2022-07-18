@@ -15,6 +15,14 @@ import {
   push,
 } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-database.js";
 
+import {
+  getStorage,
+  getDownloadURL,
+  deleteObject,
+  ref as sRef,
+  uploadBytes,
+} from "https://www.gstatic.com/firebasejs/9.8.3/firebase-storage.js";
+
 import config from "../../../config.json" assert { type: "json" };
 
 import { buildError } from "../utils/firebaseErrors.js";
@@ -23,6 +31,7 @@ import { buildError } from "../utils/firebaseErrors.js";
 const app = initializeApp(config.firebaseConfig);
 const auth = getAuth(app);
 const database = getDatabase(app);
+const storage = getStorage(app);
 
 let userAuthState = null;
 auth.onAuthStateChanged(async (user) => {
@@ -34,19 +43,20 @@ auth.onAuthStateChanged(async (user) => {
   }
 });
 
-export const getAuthState = async (callback = (res) => console.log({authState: res})) => {
+export const getAuthState = async (
+  callback = (res) => console.log({ authState: res })
+) => {
   await auth.onAuthStateChanged(async (user) => {
     //The callback is passed user parameter from event
-    console.log({uuu: user})
+    console.log({ uuu: user });
     if (user) {
       userAuthState = user;
     } else {
       userAuthState = null;
     }
-    await callback(userAuthState)
+    await callback(userAuthState);
   });
-
-}
+};
 
 /**
  *
@@ -133,7 +143,11 @@ const findMany = async (collection, callback = (res) => {}) => {
  * @param {string} uid
  * @param {Function} callback
  */
-const findOne = async (collection, uid, callback = (res) => {}) => {
+const findOne = async (
+  collection,
+  uid,
+  callback = (res) => console.log(res)
+) => {
   const _ref = ref(database, `${collection}/${uid}`);
   onValue(_ref, (snapshot) => {
     const data = snapshot.val();
@@ -156,7 +170,9 @@ const createOrUpdateData = async (collection, uid, data) => {
       ...data,
     }).catch((error) => ({ error }));
   } else {
-    res = await push(ref(database,collection), data).catch((error) => ({ error }));
+    res = await push(ref(database, collection), data).catch((error) => ({
+      error,
+    }));
   }
 
   if (res?.error) {
@@ -174,6 +190,26 @@ const deleteData = async (collection, uid) => {
   await ref(database, `${collection}/${uid}`).remove();
 };
 
+const uploadImage = async (file) => {
+  const listingImageRef = sRef(storage, `Listing Images/${file.name}`);
+
+  await uploadBytes(listingImageRef, file);
+};
+
+const getUploadedImage = async (fileName) => {
+  const imagePathReference = sRef(storage, `Listing Images/${fileName}`);
+
+  const url = await getDownloadURL(imagePathReference);
+
+  return url;
+};
+
+const deleteUploadedImage = async (fileName) => {
+  const imagePathReference = sRef(storage, `Listing Images/${fileName}`);
+
+  await deleteObject(imagePathReference);
+};
+
 export {
   app,
   auth,
@@ -187,4 +223,7 @@ export {
   deleteData,
   findOne,
   findMany,
+  uploadImage,
+  getUploadedImage,
+  deleteUploadedImage,
 };

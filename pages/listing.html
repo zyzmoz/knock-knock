@@ -1,1 +1,387 @@
-<article id="listingView"></article>
+<div class="listing-header">
+  <h1>Create Listing</h1>
+</div>
+
+<div class="create-listing-wrapper">
+  <form id="createListingForm">
+    <!-- Step 1 -->
+    <div class="step active-step" id="step1">
+      <h2>Step 1/4: Address</h2>
+
+      <div class="input-group">
+        <label for="" class="input-group-header">Where's your property located?</label>
+        <input class="input input-size-two" type="text" placeholder="Street address" id="propertyAddress" />
+        <input class="input input-size-one" type="text" placeholder="Apt/Unit #" id="propertyUnitNumber" />
+        <div id="map"></div>
+      </div>
+
+      <div class="input-group">
+        <label for="" class="input-group-header">What type of property is this?</label>
+        <select class="input input-size-one" name="propertyType" id="propertyType">
+          <option value="apartment">Apartment</option>
+          <option value="room">Room</option>
+          <option value="condo">Condo</option>
+          <option value="house">House</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step" id="step2">
+      <h2>Step 2/4: Listing</h2>
+
+      <div class="input-group">
+        <label for="" class="input-group-header">How many bedrooms and bathrooms does the property have?</label>
+
+        <div class="rooms">
+          <label for="propertyBedroomCount">Bedrooms</label>
+          <div class="rooms-counter">
+            <img
+              src="../assets/icons/Increase Decrease/decrease.svg"
+              alt="Decrement icon"
+              id="decrementIconBedroom"
+              class="decrement-icon"
+            />
+            <p id="propertyBedroomCount" class="counterValue">0</p>
+            <img
+              src="../assets/icons/Increase Decrease/increase.svg"
+              alt="Increase icon"
+              id="incrementIconBedroom"
+              class="increase-icon"
+            />
+          </div>
+        </div>
+
+        <div class="rooms">
+          <label for="propertyBathroomCount">Bathrooms</label>
+          <div class="rooms-counter">
+            <img
+              src="../assets/icons/Increase Decrease/decrease.svg"
+              alt="Decrement icon"
+              id="decrementIconBathroom"
+              class="decrement-icon"
+            />
+            <p id="propertyBathroomCount" class="counterValue">0</p>
+            <img
+              src="../assets/icons/Increase Decrease/increase.svg"
+              alt="Increase icon"
+              id="incrementIconBathroom"
+              class="increase-icon"
+            />
+          </div>
+        </div>
+
+        <div class="rooms">
+          <label for="propertyHalfBathroomCount">Half Bathrooms</label>
+          <div class="rooms-counter">
+            <img
+              src="../assets/icons/Increase Decrease/decrease.svg"
+              alt="Decrement icon"
+              id="decrementIconHalfBathroom"
+              class="decrement-icon"
+            />
+            <p id="propertyHalfBathroomCount" class="counterValue">0</p>
+            <img
+              src="../assets/icons/Increase Decrease/increase.svg"
+              alt="Increase icon"
+              id="incrementIconHalfBathroom"
+              class="increase-icon"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label for="propertySquareFeet" class="input-group-header">How big is the space?</label>
+
+        <input
+          type="number"
+          class="input input-size-one"
+          name="propertySquareFeet"
+          id="propertySquareFeet"
+          placeholder="Square ft"
+        />
+      </div>
+
+      <div class="input-group">
+        <label for="propertyDescription" class="input-group-header"
+          >Write a detailed description of your property</label
+        >
+        <p class="textarea-info-text">
+          Share important details about the property, neighborhood, and other unique features to attract renters.
+        </p>
+
+        <textarea
+          name="propertyDescription"
+          id="propertyDescription"
+          cols="30"
+          rows="10"
+          placeholder="Tell renters more about the property and lease details"
+        ></textarea>
+      </div>
+
+      <div class="input-group">
+        <label for="" class="input-group-header">Which in-unit amenities and features do you have?</label>
+
+        <p class="textarea-info-text">Tell us what makes your space unique</p>
+
+        <label for="" class="checkbox-header">Heating & Cooling</label>
+        <div class="checkboxes">
+          <div class="checkbox">
+            <input type="checkbox" name="hasAirConditioning" id="hasAirConditioning" />
+            <label for="hasAirConditioning">Air conditioning</label>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" name="hasFireplace" id="hasFireplace" />
+            <label for="hasFireplace">Fireplace</label>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" name="hasCentralHeat" id="hasCentralHeat" />
+            <label for="hasCentralHeat">Central heat</label>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" name="hasCeilingFan" id="hasCeilingFan" />
+            <label for="hasCeilingFan">Ceiling fan</label>
+          </div>
+        </div>
+
+        <label for="" class="checkbox-header">Listing Features</label>
+        <div class="checkboxes">
+          <div class="checkbox">
+            <input type="checkbox" name="hashInUnitLaundry" id="hashInUnitLaundry" />
+            <label for="hashInUnitLaundry">In-unit laundry</label>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" name="isFurnished" id="isFurnished" />
+            <label for="isFurnished">Furnished</label>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" name="hasHardwoodFloor" id="hasHardwoodFloor" />
+            <label for="hasHardwoodFloor">Hardwood floor</label>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" name="hasCarpet" id="hasCarpet" />
+            <label for="hasCarpet">Carpet</label>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" name="hasWheelchairAccess" id="hasWheelchairAccess" />
+            <label for="hasWheelchairAccess">Wheelchair access</label>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" name="hasHighCeiling" id="hasHighCeiling" />
+            <label for="hasHighCeiling">High ceilings</label>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" name="hasWalkinCloset" id="hasWalkinCloset" />
+            <label for="hasWalkinCloset">Walkin closet</label>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" name="hasBalconyOrDesk" id="hasBalconyOrDesk" />
+            <label for="hasBalconyOrDesk">Balcony or deck</label>
+          </div>
+        </div>
+
+        <label for="" class="checkbox-header">Other</label>
+        <div class="checkboxes">
+          <div class="checkbox">
+            <input type="checkbox" name="hasDishwasher" id="hasDishwasher" />
+            <label for="hasDishwasher">Dishwasher</label>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" name="hasGarden" id="hasGarden" />
+            <label for="hasGarden">Garden</label>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" name="hasSwimmingPool" id="hasSwimmingPool" />
+            <label for="hasSwimmingPool">Swimming pool</label>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" name="hasAssignedParking" id="hasAssignedParking" />
+            <label for="hasAssignedParking">Assigned parking</label>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" name="hasStorage" id="hasStorage" />
+            <label for="hasStorage">Storage</label>
+          </div>
+        </div>
+
+        <label for="" class="checkbox-header">Building features</label>
+        <div class="checkboxes">
+          <div class="checkbox">
+            <input type="checkbox" name="hasControlledAccess" id="hasControlledAccess" />
+            <label for="hasControlledAccess">Controlled access</label>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" name="hasGym" id="hasGym" />
+            <label for="hasGym">Gym</label>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" name="hasOutdoorSpaces" id="hasOutdoorSpaces" />
+            <label for="hasOutdoorSpaces">Outdoor space</label>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" name="hasResidentLounge" id="hasResidentLounge" />
+            <label for="hasResidentLounge">Resident's lounge</label>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" name="hasGarageParking" id="hasGarageParking" />
+            <label for="hasGarageParking">Garage Parking</label>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" name="hasBusinessCenter" id="hasBusinessCenter" />
+            <label for="hasBusinessCenter">Business center</label>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" name="hasRoofDeck" id="hasRoofDeck" />
+            <label for="hasRoofDeck">Roof deck</label>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" name="hasElevator" id="hasElevator" />
+            <label for="hasElevator">Elevator</label>
+          </div>
+        </div>
+
+        <label for="" class="checkbox-header">Services</label>
+        <div class="checkboxes">
+          <div class="checkbox">
+            <input type="checkbox" name="hasPackageService" id="hasPackageService" />
+            <label for="hasPackageService">Package service</label>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" name="hasDoorPerson" id="hasDoorPerson" />
+            <label for="hasDoorPerson">Door person</label>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" name="hasConceirgeService" id="hasConceirgeService" />
+            <label for="hasConceirgeService">Conceirge service</label>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" name="hasDryCleaningService" id="hasDryCleaningService" />
+            <label for="hasDryCleaningService">Dry cleaning service</label>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" name="hasOnSiteManagement" id="hasOnSiteManagement" />
+            <label for="hasOnSiteManagement">On-site management</label>
+          </div>
+        </div>
+
+        <label for="" class="input-group-header">Are pets allowed?</label>
+        <div class="checkboxes checkboxes-pets pets-section">
+          <div class="checkbox">
+            <input type="radio" id="yesAllowed" name="propertyAllowsPets" value="Yes" />
+            <label for="propertyAllowsPets">Yes</label>
+          </div>
+          <div class="checkbox">
+            <input type="radio" id="noNotAllowed" name="propertyAllowsPets" value="No" />
+            <label for="propertyAllowsPets">No</label>
+          </div>
+        </div>
+
+        <!-- <label for="" class="input-group-header">Would you like to assign a group?</label>
+        <select name="propertyAssignedGroup" class="input input-size-one" id="propertyAssignedGroup">
+          <option value="Group 1">Group 1</option>
+          <option value="Group 2">Group 2</option>
+        </select> -->
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="step" id="step3">
+      <h2>Step 3/4: Pricing</h2>
+
+      <div class="input-group">
+        <label for="propertyAvailableDate" class="input-group-header">When is this listing available?</label>
+        <input class="input input-size-one" type="date" name="propertyAvailableDate" id="propertyAvailableDate" />
+      </div>
+
+      <div class="input-group">
+        <label for="" class="input-group-header">What is the desired length of lease?</label>
+        <div class="checkboxes-pets">
+          <div class="checkbox">
+            <input type="radio" id="1_year" name="propertyLeasePeriod" value="1 year" />
+            <label for="propertyLeasePeriod">1 year</label>
+          </div>
+          <div class="checkbox">
+            <input type="radio" id="6_months" name="propertyLeasePeriod" value="6 months" />
+            <label for="propertyLeasePeriod">6 months</label>
+          </div>
+          <div class="checkbox">
+            <input type="radio" id="3_months" name="propertyLeasePeriod" value="3 months" />
+            <label for="propertyLeasePeriod">3 months</label>
+          </div>
+          <div class="checkbox">
+            <input type="radio" id="month_to_month" name="propertyLeasePeriod" value="Month to month" />
+            <label for="propertyLeasePeriod">Month to month</label>
+          </div>
+          <div class="checkbox">
+            <input type="radio" id="flexible" name="propertyLeasePeriod" value="Flexible" />
+            <label for="propertyLeasePeriod">Flexible</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label for="propertyRentPrice" class="input-group-header">How much would you like to charge?</label>
+        <div class="input-rent">
+          <input
+            class="input input-size-one"
+            type="number"
+            name="propertyRentPrice"
+            id="propertyRentPrice"
+            placeholder="Monthly rent"
+          />
+          <span>/ month</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="step" id="step4">
+      <h2>Step 4/4: Media</h2>
+
+      <div class="input-group">
+        <label for="" class="input-group-header">Add some pictures to show off your place.</label>
+        <p class="textarea-info-text">Need at least 1 photo of the place</p>
+        <div class="photos-box">
+          <h4>Drag photos or click here to upload</h4>
+          <p>1800 X 600 or higher is recommended</p>
+          <p>max 25MB per photo</p>
+          <p>Format: PNG, JPEG</p>
+          <input type="file" name="uploadedImage" id="uploadedImage" />
+        </div>
+      </div>
+
+      <div class="input-group">
+        <div class="uploaded-photos-box" id="uploadedPhotosBox"></div>
+      </div>
+    </div>
+
+    <!-- Step 5 -->
+    <!-- <div class="step" id="step5">
+      <h2>Step 5/5: Review and publish</h2>
+
+      <div class="input-group">
+        <label for="" class="input-group-header">Add some pictures to show off your place.</label>
+        <p class="textarea-info-text">Need at least 1 photo of the place</p>
+        <div class="photos-box">
+          <h4>Drag photos or click here to upload</h4>
+          <p>1800 X 600 or higher is recommended</p>
+          <p>max 25MB per photo</p>
+          <p>Format: PNG, JPEG</p>
+          <input type="file" name="uploadedImage" id="uploadedImage" />
+        </div>
+      </div>
+    </div> -->
+  </form>
+</div>
+
+<div class="listing-btns">
+  <div>
+    <button class="btn btn-secondary exit" id="exitBtn">Exit</button>
+  </div>
+  <div>
+    <button class="btn btn-secondary back hideBtn" id="backBtn">Back</button>
+    <button class="btn btn-primary next" id="nextBtn">Next</button>
+    <button class="btn btn-primary hideBtn" id="createListingBtn">Create Listing</button>
+  </div>
+</div>

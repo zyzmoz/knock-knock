@@ -1,9 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
 
 body {
   padding: 1rem;
-  font-family: "Nunito", sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-weight: 400;
   font-size: 1rem;
 }
@@ -14,7 +14,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Space Grotesk", sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
 }
 
@@ -42,10 +42,10 @@ h6 {
   justify-content: center;
   align-items: center;
   gap: 10px;
-  padding: 1rem 2rem;
+  padding: 0.6rem 1.6rem;
   border: none;
   border-radius: 10px;
-  font-family: "Space Grotesk", sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
   font-size: 1rem;
   transition: all 0.5s;
@@ -78,10 +78,10 @@ h6 {
 /* Inputs */
 
 .input {
-  padding: 12px 24px;
+  padding: 8px 20px;
   border: 1px solid #8d8d8d;
   border-radius: 10px;
-  font-family: "Nunito", sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-weight: 400;
   font-size: 18px;
   outline: none;
@@ -98,14 +98,14 @@ h6 {
 select {
   -webkit-appearance: none;
   -moz-appearance: none;
-  background: url(../icons/chevron.svg) no-repeat;
+  background: url(../icons/Chevron/chevron-down.svg) no-repeat;
   background-position-x: 94%;
-  background-position-y: 0.8rem;
+  background-position-y: 50%;
 }
 
-.input[type="date"]::-webkit-inner-spin-button,
-.input[type="date"]::-webkit-calendar-picker-indicator {
-  background: url(../icons/calendar.svg) no-repeat;
+.input[type='date']::-webkit-inner-spin-button,
+.input[type='date']::-webkit-calendar-picker-indicator {
+  background: url(../icons/Other/calendar.svg) no-repeat;
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -116,7 +116,7 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type="number"] {
+input[type='number'] {
   -moz-appearance: textfield;
 }
 
@@ -128,9 +128,14 @@ input[type="number"] {
   position: relative;
 }
 
+.input-rent {
+  width: max-content;
+}
+
 .input-rent span {
   position: absolute;
   right: 1rem;
+  top: 20%;
   font-weight: 600;
   color: #8d8d8d;
 }
@@ -153,6 +158,13 @@ textarea {
   line-height: 24px;
 }
 
+textarea::placeholder {
+  font-size: 1rem;
+  color: #8d8d8d;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 400;
+}
+
 #map {
   height: 300px;
 }
@@ -172,6 +184,16 @@ textarea {
   padding: 0.5rem;
 }
 
+input::file-selector-button {
+  font-weight: bold;
+  background-color: #fff;
+  padding: 0.8rem 2rem;
+  border: 1px solid #000;
+}
+
+input::file-selector-button:hover {
+  cursor: pointer;
+}
 
 /* LISTING */
 .listing-card {

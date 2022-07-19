@@ -1,17 +1,32 @@
 <article class="listing-view-wrapper">
-  <div class="listing-view-header">
-    <span id="listingMessage"></span>
-    <button id="toggleMap" class="btn btn-secondary">
-      <img
-        src="./assets/icons/Map/map-not-filled.svg"
-        alt="Knock Knock Logo"
-        class="logo-icon"
-      />
-      <span id="toggleMapStatus"> View </span> Map
-    </button>
+  <div id="listingDiv">
+    <div class="listing-view-header">
+      <span id="listingMessage"></span>
+      <button id="toggleMap" class="btn btn-secondary">
+        <img
+          src="./assets/icons/Map/map-not-filled.svg"
+          alt="Knock Knock Logo"
+          class="logo-icon"
+        />
+        <span id="toggleMapStatus"> View </span> Map
+      </button>
+    </div>
+    <div id="listingMap"></div>
+    <div id="listingView"></div>
   </div>
 
-  <div id="listingMap"></div>
+  <div id="singleListingDiv">
+    <div class="listing-view-header">
+      <span></span>
+      <button id="showListingsBtn" class="btn btn-secondary">
+        Go Back to Listings        
+      </button>
+    </div>
 
-  <div id="listingView"></div>
+    <div id="singleListingView">
+      <h2 id="listingDescription"></h2>
+      <div id="changeMe"></div>
+    </div>
+
+  </div>
 </article>

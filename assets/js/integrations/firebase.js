@@ -190,8 +190,8 @@ const deleteData = async (collection, uid) => {
   await ref(database, `${collection}/${uid}`).remove();
 };
 
-const uploadImage = async (file) => {
-  const listingImageRef = sRef(storage, `Listing Images/${file.name}`);
+const uploadImage = async (file, fileName = null) => {
+  const listingImageRef = sRef(storage, `Listing Images/${fileName ?? file.name}`);
 
   await uploadBytes(listingImageRef, file);
 };

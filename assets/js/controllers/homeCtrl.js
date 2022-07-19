@@ -18,12 +18,36 @@ export const homeCtrl = () => {
 
   navigator.geolocation.getCurrentPosition(success, error);
 
+  const showSingleListing = (listing) => {
+    listingDiv.style.opacity = 0;
+    listingDiv.style.position = 'absolute';
+    listingDiv.style.visibility = 'hidden';
+    singleListingDiv.style.position = 'relative';
+    singleListingDiv.style.visibility = 'visible';
+    singleListingDiv.style.opacity = 1;
+
+    // Set UI values
+
+    listingDescription.innerHTML = listing.propertyDescription;
+    changeMe.innerHTML = JSON.stringify(listing);
+
+  }
+
+  showListingsBtn.addEventListener('click', () => {
+    singleListingDiv.style.opacity = 0;
+    singleListingDiv.style.position = 'absolute';
+    singleListingDiv.style.visibility = 'hidden';
+    listingDiv.style.position = 'relative';
+    listingDiv.style.visibility = 'visible';
+    listingDiv.style.opacity = 1;
+  })
+
   const createListingCard = (listing) => {
     let cardDiv = document.createElement("div");
 
-    cardDiv.addEventListener("click", () =>
-      console.log(`listing ${listing.id}`)
-    );
+    cardDiv.addEventListener("click", () => {
+      showSingleListing(listing)
+    });
     cardDiv.id = listing.id;
     cardDiv.className = "listing-card";
 

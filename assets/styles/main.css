@@ -641,7 +641,7 @@ input[type='checkbox'] {
 
 #listingMap.leaflet-container  {
   position: absolute;
-visibility: hidden;
+  visibility: hidden;
 }
 
 #listingMap.leaflet-container.show  {
@@ -658,6 +658,12 @@ visibility: hidden;
 
 #listingView .listing-card {
   max-width: 430px;
+}
+
+#singleListingDiv {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
 }
 
 

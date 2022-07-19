@@ -163,13 +163,15 @@ export const listingCtrl = async () => {
   };
 
   uploadedImage.addEventListener("change", async () => {
-    const file = uploadedImage.files[0];
-    await uploadImage(file);
+    let file = uploadedImage.files[0];
+    const fileName = `${userAuthState.uid}-${new Date().getMilliseconds()}.${file.name.split('.')[1]}`;
 
-    const url = await getUploadedImage(file.name);
+    await uploadImage(file, fileName);
+
+    const url = await getUploadedImage(fileName);
 
     const imageData = {
-      name: file.name,
+      name: fileName,
       url: url,
     };
 
@@ -245,8 +247,11 @@ export const listingCtrl = async () => {
   // CREATE LISTING
   createListingBtn.addEventListener("click", async (e) => {
     e.preventDefault();
+    if (!listingImages || listingImages.length === 0) {
+      return;
+    }
 
-    const user = await getUser(userAuthState.uid);
+    await getUser(userAuthState.uid);
 
     let listing = new Listing({
       createdBy: userAuthState.uid, //user.firstName + ' ' + user.lastName,

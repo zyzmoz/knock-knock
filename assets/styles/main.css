@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Bevan&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Bevan&display=swap');
 
 /* Mobile */
 .tablet-and-desktop-view {
@@ -42,7 +42,7 @@
 .nav-items {
   gap: 1.4rem;
   justify-content: flex-end;
-  font-family: "Space Grotesk", sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
   font-size: 16px;
 }
@@ -76,7 +76,7 @@
   gap: 1.4rem;
   justify-content: flex-end;
   flex-flow: column nowrap;
-  font-family: "Space Grotesk", sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
   font-size: 20px;
   padding: 0 2rem;
@@ -174,7 +174,7 @@
   }
 
   .searchbar::placeholder {
-    font-family: "Nunito";
+    font-family: 'Nunito';
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -201,7 +201,7 @@
   }
 
   .logo-title {
-    font-family: "Bevan", cursive;
+    font-family: 'Bevan', cursive;
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
@@ -639,25 +639,25 @@ input[type='checkbox'] {
   height: 45vh;
 }
 
-#listingMap.leaflet-container  {
+#listingMap.leaflet-container {
   position: absolute;
   visibility: hidden;
 }
 
-#listingMap.leaflet-container.show  {
+#listingMap.leaflet-container.show {
   position: relative;
   visibility: visible;
 }
 
 #listingView {
-  padding-top: 1rem;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
 }
 
 #listingView .listing-card {
-  max-width: 430px;
+  /* max-width: 430px; */
 }
 
 #singleListingDiv {
@@ -666,22 +666,20 @@ input[type='checkbox'] {
   opacity: 0;
 }
 
-
 @media screen and (min-width: 600px) {
   #listingView {
-    flex-flow: row wrap;
-    gap: 0.5rem;
+    /* flex-flow: row wrap;
+    gap: 0.5rem; */
   }
   #listingView .listing-card {
-    max-width: 320px;
+    /* max-width: 320px; */
   }
 }
 @media screen and (min-width: 1220px) {
   #listingView .listing-card {
-    max-width: 20%;
+    /* max-width: 20%; */
   }
 }
-
 
 .group-feed-message {
   display: flex;

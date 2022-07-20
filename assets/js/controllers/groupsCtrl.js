@@ -14,7 +14,7 @@ export const groupsCtrl = async () => {
 
   const selectGroup = async (groupId) => {
     const group = groups.find((g) => g.id === groupId);
-    groupFeedParticipants.innerHTML = "";
+    groupFeedParticipants.innerHTML = null;
     groupFeedName.innerHTML = group?.groupName;
     groupFeedParticipants.innerHTML = "";
     selectedGroupId = group?.id;
@@ -22,7 +22,7 @@ export const groupsCtrl = async () => {
       const user = await getUser(id);
       groupFeedParticipants.innerHTML += `${user.firstName},`;
     });
-    groupFeedMessages.innerHTML = "";
+
     group?.messages?.map(async (m) => {
       const el = await createMessageDiv(m);
       console.log(el);
@@ -31,6 +31,7 @@ export const groupsCtrl = async () => {
   };
 
   findMany("groups", async (res) => {
+    groupFeedMessages.innerHTML = "";
     await getAuthState();
     console.log(userAuthState?.uid);
     groups = res.filter((g) =>
@@ -38,6 +39,7 @@ export const groupsCtrl = async () => {
     );
 
     const gList = document.getElementById("groupList");
+    gList.innerHTML = "";
 
     if (groups.length > 0 && gList) {
       gList.innerHTML = "";
@@ -49,7 +51,7 @@ export const groupsCtrl = async () => {
       });
 
     if (groups && groups.length > 0) {
-      selectGroup(selectedGroupId || groups[0]?.id);
+      // selectGroup(selectedGroupId || groups[0]?.id);
     }
   });
 
@@ -116,7 +118,8 @@ export const groupsCtrl = async () => {
     if (groupMessage.value.trim() === "") {
       return;
     }
-    getAuthState((res) => {
+
+    getAuthState(async (res) => {
       const message = {
         sentBy: userAuthState?.uid,
         sentAt: new Date().toDateString(),
@@ -130,8 +133,13 @@ export const groupsCtrl = async () => {
       }
 
       console.log(group);
+      groupFeedMessages.innerHTML = "";
+
       groupFeedParticipants.innerHTML = "";
-      createOrUpdateData("groups", selectedGroupId, group);
+      groups = [];
+      groupMessage.value = "";
+      await createOrUpdateData("groups", selectedGroupId, group);
+      selectGroup(selectedGroupId);
     });
   });
 
@@ -154,7 +162,7 @@ export const groupsCtrl = async () => {
       const group = new Group({
         groupName: groupName.value,
         invitedUsers: invited,
-        participants: [userAuthState?.uid],
+        participants: [userAuthState?.uid, ...invited],
         createdBy: userAuthState?.uid,
       });
       const { error } = await createOrUpdateData("groups", null, group);

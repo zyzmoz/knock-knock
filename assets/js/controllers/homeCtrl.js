@@ -1,10 +1,10 @@
-import { findMany } from "../integrations/firebase.js";
+import { findMany } from '../integrations/firebase.js';
 
 export const homeCtrl = () => {
-  let map = L.map("listingMap");
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  let map = L.map('listingMap');
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
-    attribution: "© OpenStreetMap",
+    attribution: '© OpenStreetMap',
   }).addTo(map);
 
   const success = (position) => {
@@ -13,7 +13,7 @@ export const homeCtrl = () => {
   };
 
   const error = () => {
-    return { error: "Geolocation is not supported by your brwser" };
+    return { error: 'Geolocation is not supported by your brwser' };
   };
 
   navigator.geolocation.getCurrentPosition(success, error);
@@ -28,10 +28,29 @@ export const homeCtrl = () => {
 
     // Set UI values
 
-    listingDescription.innerHTML = listing.propertyDescription;
-    changeMe.innerHTML = JSON.stringify(listing);
+    console.log(listing);
 
-  }
+    singleListingView.style.padding = '1rem';
+    singleListingView.style.display = 'block';
+    singleListingView.style.width = '600px';
+    singleListingView.style.margin = 'auto';
+
+    propertyType.innerHTML = `<i>Type</i> : ${listing.propertyType}`;
+    propertyType.style.textTransform = 'capitalize';
+
+    propertyDescription.innerHTML = `<i>Description</i> : ${listing.propertyDescription}`;
+
+    listing.propertyImages.forEach((image) => {
+      const img = document.createElement('img');
+      img.src = image.url;
+      img.style.width = '200px';
+      img.style.height = 'auto';
+      img.style.margin = '1rem';
+      propertyImages.appendChild(img);
+    });
+
+    propertyRent.innerHTML = `$${listing.propertyRentPrice}`;
+  };
 
   showListingsBtn.addEventListener('click', () => {
     singleListingDiv.style.opacity = 0;
@@ -40,31 +59,31 @@ export const homeCtrl = () => {
     listingDiv.style.position = 'relative';
     listingDiv.style.visibility = 'visible';
     listingDiv.style.opacity = 1;
-  })
+  });
 
   const createListingCard = (listing) => {
-    let cardDiv = document.createElement("div");
+    let cardDiv = document.createElement('div');
 
-    cardDiv.addEventListener("click", () => {
-      showSingleListing(listing)
+    cardDiv.addEventListener('click', () => {
+      showSingleListing(listing);
     });
     cardDiv.id = listing.id;
-    cardDiv.className = "listing-card";
+    cardDiv.className = 'listing-card';
 
-    let cardImage = document.createElement("img");
+    let cardImage = document.createElement('img');
     cardImage.src = listing.propertyImages[0]?.url;
 
-    let descriptionDiv = document.createElement("div");
-    descriptionDiv.className = "listing-description";
+    let descriptionDiv = document.createElement('div');
+    descriptionDiv.className = 'listing-description';
 
-    let titleH2 = document.createElement("h2");
+    let titleH2 = document.createElement('h2');
     titleH2.innerHTML = listing.propertyDescription;
 
-    let titleSpan = document.createElement("span");
+    let titleSpan = document.createElement('span');
     titleSpan.innerHTML = `${listing.propertyRooms.bedroomCount} Bedroom(s) | ${listing.propertyRooms.bathroomCount} BathRoom(s)`;
 
-    let addressDiv = document.createElement("div");
-    addressDiv.className = "listing-address";
+    let addressDiv = document.createElement('div');
+    addressDiv.className = 'listing-address';
 
     addressDiv.innerHTML = `${listing.propertyAddress.unitNumber} ${listing.propertyAddress.address}`;
 
@@ -72,8 +91,8 @@ export const homeCtrl = () => {
     descriptionDiv.appendChild(titleSpan);
     descriptionDiv.appendChild(addressDiv);
 
-    let priceDiv = document.createElement("div");
-    priceDiv.className = "listing-price";
+    let priceDiv = document.createElement('div');
+    priceDiv.className = 'listing-price';
 
     priceDiv.innerHTML = `${listing.propertyRentPrice} / month`;
 
@@ -84,25 +103,20 @@ export const homeCtrl = () => {
     return cardDiv;
   };
 
-  toggleMap.addEventListener("click", () => {
+  toggleMap.addEventListener('click', () => {
     if (listingMap.classList.toString().includes('show')) {
-      toggleMapStatus.innerHTML = 'View'
+      toggleMapStatus.innerHTML = 'View';
     } else {
-      toggleMapStatus.innerHTML = 'Hide'
+      toggleMapStatus.innerHTML = 'Hide';
     }
-    listingMap.classList.toggle("show");
+    listingMap.classList.toggle('show');
   });
 
-  findMany("listings", (res) => {
-    listingMessage.innerHTML = `<b>Showing ${
-      res?.length || 0
-    } apartment(s) and house(s)</b>`;
-    listingView.innerHTML = "";
+  findMany('listings', (res) => {
+    listingMessage.innerHTML = `<b>Showing ${res?.length || 0} apartment(s) and house(s)</b>`;
+    listingView.innerHTML = '';
     res?.map((r) => {
-      let marker = L.marker([
-        r.propertyAddress.location.lat,
-        r.propertyAddress.location.lng,
-      ]).addTo(map);
+      let marker = L.marker([r.propertyAddress.location.lat, r.propertyAddress.location.lng]).addTo(map);
 
       listingView.appendChild(createListingCard(r));
     });

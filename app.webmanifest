@@ -1,0 +1,9 @@
+{
+  "short_name": "Knock Knock",
+  "name": "Knock Knock Rentals",
+  "icons": [{ "src": "assets/icons/App Icon/app-icon.svg", "sizes": "192x192", "type": "image/png" }],
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ABC",
+  "theme_color": "#DEF"
+}

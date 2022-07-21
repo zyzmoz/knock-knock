@@ -272,8 +272,41 @@
 }
 
 /* PROFILE */
+.profile {
+  padding: 4rem 1rem;
+}
+
 .profile h1 {
   text-align: center;
+}
+
+.profile-photo-update {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 1rem 0;
+}
+
+.profile-photo-update button {
+  padding: 0.4rem;
+  width: 200px;
+}
+
+.profile-photo-update button:hover {
+  cursor: pointer;
+}
+
+#video,
+#canvas {
+  border: 1px solid #000;
+}
+
+.video-canvas-container {
+  display: none;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 1rem 0;
 }
 
 /* CREATE LISTING */
@@ -713,4 +746,8 @@ input[type='checkbox'] {
 
 .group-feed-form button {
   flex: 0 0 20%;
+}
+
+#toggleMap img {
+  width: 30px;
 }

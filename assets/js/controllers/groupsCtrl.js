@@ -57,8 +57,13 @@ export const groupsCtrl = async () => {
 
   const createMessageDiv = async (message) => {
     const user = await getUser(message?.sentBy);
+    await getAuthState();
     let messageDiv = document.createElement("div");
-    messageDiv.className = "group-feed-message";
+    if (message?.sentBy === userAuthState?.uid) {
+      messageDiv.className = "group-feed-message me";
+    } else {
+      messageDiv.className = "group-feed-message";
+    }
 
     let messageFigure = document.createElement("figure");
     messageFigure.className = "avatar";

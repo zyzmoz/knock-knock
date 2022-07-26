@@ -1,9 +1,50 @@
 <article class="listing-view-wrapper">
+  <div id="filtersDiv">
+    <div class="filters-header">Filters</div>
+    <div class="filters-container">
+      <select id="propertyTypeFilter" class="input">
+        <option selected value="">Type</option>
+        <option value="apartment">Apartment</option>
+        <option value="room">Room(Sublet)</option>
+        <option value="condo">Condo</option>
+        <option value="house">House</option>
+      </select>
+      <select id="propertyRoomsFilter" class="input">
+        <option selected value="BedRooms">BedRooms</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4+</option>
+      </select>
+      <select id="propertyRentPriceFilter" class="input">
+        <option selected value="">Price</option>
+        <option value="1000">1000</option>
+        <option value="2000">2000</option>
+        <option value="3000">3000</option>
+        <option value="4000">4000+</option>
+      </select>
+      <select id="propertyFeaturesFilter" class="input">
+        <option selected value="">Furnished</option>
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+      </select>
+      <select id="propertyAllowsPetsFilter" class="input">
+        <option selected value="">Pet Policy</option>
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+      </select>
+    </div>
+  </div>
+
   <div id="listingDiv">
     <div class="listing-view-header">
       <span id="listingMessage"></span>
       <button id="toggleMap" class="btn btn-secondary">
-        <img src="./assets/icons/Map/map-not-filled.svg" alt="Knock Knock Logo" class="logo-icon" />
+        <img
+          src="./assets/icons/Map/map-not-filled.svg"
+          alt="Knock Knock Logo"
+          class="logo-icon"
+        />
         <span id="toggleMapStatus"> View </span> Map
       </button>
     </div>
@@ -14,7 +55,9 @@
   <div id="singleListingDiv">
     <div class="listing-view-header">
       <span></span>
-      <button id="showListingsBtn" class="btn btn-secondary">Go Back to Listings</button>
+      <button id="showListingsBtn" class="btn btn-secondary">
+        Go Back to Listings
+      </button>
     </div>
 
     <div id="singleListingView">

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bevan&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bevan&display=swap");
 
 /* Mobile */
 .tablet-and-desktop-view {
@@ -42,7 +42,7 @@
 .nav-items {
   gap: 1.4rem;
   justify-content: flex-end;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   font-weight: 700;
   font-size: 16px;
 }
@@ -76,7 +76,7 @@
   gap: 1.4rem;
   justify-content: flex-end;
   flex-flow: column nowrap;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   font-weight: 700;
   font-size: 20px;
   padding: 0 2rem;
@@ -174,7 +174,7 @@
   }
 
   .searchbar::placeholder {
-    font-family: 'Nunito';
+    font-family: "Nunito";
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -201,7 +201,7 @@
   }
 
   .logo-title {
-    font-family: 'Bevan', cursive;
+    font-family: "Bevan", cursive;
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
@@ -316,14 +316,14 @@
 }
 
 .input-group-header {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   font-weight: 700;
   font-size: 1.2rem;
   margin-bottom: 12px;
 }
 
 .checkbox-header {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   font-weight: 700;
   font-size: 1rem;
   line-height: 150%;
@@ -379,7 +379,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding: 2rem 8rem;
-  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
+    rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
   position: fixed;
   bottom: 0;
   right: 0;
@@ -453,7 +454,7 @@
   gap: 0.6rem;
 }
 
-input[type='checkbox'] {
+input[type="checkbox"] {
   width: 18px;
   height: 18px;
 }
@@ -524,7 +525,7 @@ input[type='checkbox'] {
 .image-uploads-text {
   color: #595959;
   font-size: 1.1rem;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   flex-grow: 1;
   flex-basis: 100%;
 }
@@ -720,11 +721,19 @@ input[type='checkbox'] {
   margin-bottom: 1rem;
 }
 
+.group-feed-message.me{
+  flex-flow: row-reverse wrap;
+}
+
 .group-feed-message .avatar {
   width: 48px;
   height: 48px;
   margin: unset;
   margin-right: 1rem;
+}
+
+.group-feed-message.me .avatar{
+  margin-left: 1rem;
 }
 
 .group-feed-form {
@@ -751,3 +760,43 @@ input[type='checkbox'] {
 #toggleMap img {
   width: 30px;
 }
+
+/* FILTERS */
+#filtersDiv {
+  display: flex;
+  flex-flow: column nowrap;
+  padding: 1rem;
+}
+
+#filtersDiv .filters-header {
+  font-weight: bold;
+}
+
+#filtersDiv .filters-container {
+  display: flex;
+  flex-flow: row wrap;
+  gap: .5rem;
+}
+
+#filtersDiv .filters-container select {
+  flex: 1 0 50%;
+}
+
+@media screen and (min-width: 600px) {
+  #filtersDiv .filters-container select {
+    flex: 1 0 25%;
+  }
+  
+}
+
+@media screen and (min-width: 900px) {
+  #filtersDiv .filters-container {
+    flex-flow: row nowrap;
+
+  }
+  #filtersDiv .filters-container select {
+    flex: 1 0 18%;
+  }
+  
+}
+

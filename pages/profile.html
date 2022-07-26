@@ -1,8 +1,26 @@
 <article class="profile">
   <div class="form size-33 center-margin">
     <figure class="avatar">
-      <img id="profilePhoto" src="https://picsum.photos/200/200" />
+      <img id="profilePhoto" />
     </figure>
+    <div class="video-canvas-container">
+      <video id="video" width="320" height="240" autoplay></video>
+      <canvas id="canvas" width="320" height="240"></canvas>
+    </div>
+    <div>
+      <label for="photo">Photo</label>
+      <div class="profile-photo-update">
+        <div>
+          <button id="startCamera">Start Camera</button>
+          <button id="takeProfilePhoto">Take Photo</button>
+          <button id="stopCamera">Stop Camera</button>
+        </div>
+        <div>
+          <input type="file" name="uploadedProfileImage" id="uploadedProfileImage" />
+          <button id="uploadProfilePhoto">Upload Photo</button>
+        </div>
+      </div>
+    </div>
     <h1 id="profileName"></h1>
     <label for="profileName">First Name</label>
     <input type="text" id="profileFirstName" class="input input-size-one" />

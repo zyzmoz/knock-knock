@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="manifest" href="app.webmanifest" />
     <title>Document</title>
 
     <!-- CSS -->
@@ -33,7 +34,6 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-
   </head>
   <body>
     <header>
@@ -41,37 +41,17 @@
         <div class="mobile-view">
           <div class="m-nav">
             <div class="logo-group">
-              <img
-                src="./assets/icons/Logo/logo-light-no-text.svg"
-                alt="Knock Knock Logo"
-                class="logo-icon"
-              />
+              <img src="./assets/icons/Logo/logo-light-no-text.svg" alt="Knock Knock Logo" class="logo-icon" />
             </div>
             <div class="nav-items">
-              <img
-                src="./assets/icons/Other/search.svg"
-                alt="Search Icon"
-                class="search-icon"
-              />
-              <img
-                src="./assets/icons/Other/bell.svg"
-                alt="Bell Icon"
-                class="bell-icon"
-              />
-              <img
-                src="./assets/icons/Other/hamburger.svg"
-                alt="Hamburger Icon"
-                class="hamburger-icon"
-              />
+              <img src="./assets/icons/Other/search.svg" alt="Search Icon" class="search-icon" />
+              <img src="./assets/icons/Other/bell.svg" alt="Bell Icon" class="bell-icon" />
+              <img src="./assets/icons/Other/hamburger.svg" alt="Hamburger Icon" class="hamburger-icon" />
             </div>
           </div>
 
           <div class="logged-out-sidebar">
-            <img
-              src="./assets/icons/Cross/cross.svg"
-              alt="Cross Icon"
-              class="cross-icon"
-            />
+            <img src="./assets/icons/Cross/cross.svg" alt="Cross Icon" class="cross-icon" />
             <div class="sidebar-items">
               <p><a href="#listing">List property</a></p>
               <p id="mOpenLoginBtn">Login</p>
@@ -82,11 +62,7 @@
           </div>
 
           <div class="logged-in-sidebar">
-            <img
-              src="./assets/icons/Cross/cross.svg"
-              alt="Cross Icon"
-              class="cross-icon"
-            />
+            <img src="./assets/icons/Cross/cross.svg" alt="Cross Icon" class="cross-icon" />
             <div class="sidebar-items">
               <p><a href="#listing">List property</a></p>
               <p><a href="#groups">My groups</a></p>
@@ -103,20 +79,13 @@
           <div class="td-logged-out td-active-nav">
             <div class="logo-group">
               <a href="#home"
-                ><img
-                  src="./assets/icons/Logo/logo-light-no-text.svg"
-                  alt="Knock Knock Logo"
-                  class="logo-icon"
+                ><img src="./assets/icons/Logo/logo-light-no-text.svg" alt="Knock Knock Logo" class="logo-icon"
               /></a>
               <p class="logo-title"><a href="#home">Knock Knock</a></p>
             </div>
             <div class="searchbar-group">
               <input type="text" class="searchbar" placeholder="Search..." />
-              <img
-                src="./assets/icons/Location/location-background.svg"
-                alt="Searchbar Icon"
-                class="searchbar-icon"
-              />
+              <img src="./assets/icons/Location/location-background.svg" alt="Searchbar Icon" class="searchbar-icon" />
             </div>
             <div class="nav-items">
               <p><a href="#listing">List property</a></p>
@@ -128,29 +97,18 @@
           <div class="td-logged-in">
             <div class="logo-group">
               <a href="#home"
-                ><img
-                  src="./assets/icons/Logo/logo-light-no-text.svg"
-                  alt="Knock Knock Logo"
-                  class="logo-icon"
+                ><img src="./assets/icons/Logo/logo-light-no-text.svg" alt="Knock Knock Logo" class="logo-icon"
               /></a>
               <p class="logo-title"><a href="#home">Knock Knock</a></p>
             </div>
             <div class="searchbar-group">
               <input type="text" class="searchbar" placeholder="Search..." />
-              <img
-                src="./assets/icons/Location/location-background.svg"
-                alt="Searchbar Icon"
-                class="searchbar-icon"
-              />
+              <img src="./assets/icons/Location/location-background.svg" alt="Searchbar Icon" class="searchbar-icon" />
             </div>
             <div class="nav-items">
               <p><a href="#listing">List property</a></p>
               <p><a href="#groups">My groups</a></p>
-              <img
-                src="./assets/icons/Other/bell.svg"
-                alt="Bell Icon"
-                class="bell-icon"
-              />
+              <img src="./assets/icons/Other/bell.svg" alt="Bell Icon" class="bell-icon" />
               <div class="user-group">
                 <a href="#profile"><img alt="" class="user-image" /></a>
                 <p class="user-name"><a href="#profile"></a></p>
@@ -161,19 +119,12 @@
           <div class="td-create-listing">
             <div class="logo-group">
               <a href="#home"
-                ><img
-                  src="./assets/icons/Logo/logo-light-no-text.svg"
-                  alt="Knock Knock Logo"
-                  class="logo-icon"
+                ><img src="./assets/icons/Logo/logo-light-no-text.svg" alt="Knock Knock Logo" class="logo-icon"
               /></a>
               <p class="logo-title"><a href="#home">Knock Knock</a></p>
             </div>
             <div class="nav-items">
-              <img
-                src="./assets/icons/Other/bell.svg"
-                alt="Bell Icon"
-                class="bell-icon"
-              />
+              <img src="./assets/icons/Other/bell.svg" alt="Bell Icon" class="bell-icon" />
               <div class="user-group">
                 <a href="#profile"><img alt="" class="user-image" /></a>
                 <p class="user-name"><a href="#profile"></a></p>
@@ -205,9 +156,7 @@
         /><br />
         <div id="loginError" class="error-message"></div>
         <button id="loginBtn" class="btn btn-primary">Login</button><br />
-        <button id="toggleToRegisterBtn" class="btn btn-secondary">
-          don't have an account? REGISTER
-        </button>
+        <button id="toggleToRegisterBtn" class="btn btn-secondary">don't have an account? REGISTER</button>
       </div>
       <div id="registerForm" class="form register-form size-33 center-margin">
         <h2>Register</h2>
@@ -258,12 +207,13 @@
         />
         <div id="registerError" class="error-message"></div>
         <button id="registerBtn" class="btn btn-primary">Register</button><br />
-        <button id="toggleToLoginBtn" class="btn btn-secondary">
-          have an account? LOGIN
-        </button>
+        <button id="toggleToLoginBtn" class="btn btn-secondary">have an account? LOGIN</button>
       </div>
     </div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOYEmdTAaekK7k1XP9vliXqJdv7koTgFA&libraries=places" defer></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOYEmdTAaekK7k1XP9vliXqJdv7koTgFA&libraries=places"
+      defer
+    ></script>
 
     <main id="root"></main>
   </body>

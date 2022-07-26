@@ -19,6 +19,20 @@ const userImage = document.querySelectorAll('.user-image');
 const userName = document.querySelectorAll('.user-name');
 const sidebarItems = document.querySelectorAll('.sidebar-items');
 
+// register service worker
+if ('serviceWorker' in navigator) {  //if browser supports Service worker
+  // register the service worker in sw.js
+  navigator.serviceWorker.register('./sw.js')
+  .then( function (reg) {
+      console.log(`Service Worker Registered`);
+  })
+  .catch( function (error) {
+      console.log(`Service Worker Error (${error})`);
+  });
+} else {
+  console.error("This browser doesn't support Service Worker");
+}
+
 export let currentLocation;
 const success = (position) => {
   currentLocation = {

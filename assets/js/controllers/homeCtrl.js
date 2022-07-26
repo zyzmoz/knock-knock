@@ -76,7 +76,7 @@ export const homeCtrl = () => {
     let descriptionDiv = document.createElement('div');
     descriptionDiv.className = 'listing-description';
 
-    let titleH2 = document.createElement('h2');
+    let titleH2 = document.createElement('h4');
     titleH2.innerHTML = listing.propertyDescription;
 
     let titleSpan = document.createElement('span');

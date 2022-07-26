@@ -18,6 +18,7 @@ export const groupsCtrl = async () => {
     groupFeedName.innerHTML = group?.groupName;
     groupFeedParticipants.innerHTML = "";
     selectedGroupId = group?.id;
+    groupFeedMessages.innerHTML = ""
     group?.participants?.map(async (id) => {
       const user = await getUser(id);
       groupFeedParticipants.innerHTML += `${user.firstName},`;
@@ -31,7 +32,6 @@ export const groupsCtrl = async () => {
   };
 
   findMany("groups", async (res) => {
-    groupFeedMessages.innerHTML = "";
     await getAuthState();
     console.log(userAuthState?.uid);
     groups = res.filter((g) =>
@@ -51,7 +51,7 @@ export const groupsCtrl = async () => {
       });
 
     if (groups && groups.length > 0) {
-      // selectGroup(selectedGroupId || groups[0]?.id);
+      selectGroup(selectedGroupId || groups[0]?.id);
     }
   });
 
@@ -144,7 +144,6 @@ export const groupsCtrl = async () => {
       groups = [];
       groupMessage.value = "";
       await createOrUpdateData("groups", selectedGroupId, group);
-      selectGroup(selectedGroupId);
     });
   });
 

@@ -358,7 +358,9 @@ export const homeCtrl = () => {
               case 3000:
                 return l.propertyRentPrice >= 2000 && l.propertyRentPrice <= price;
               case 4000:
-                return l.propertyRentPrice >= 3000;
+                return l.propertyRentPrice >= 3000 && l.propertyRentPrice <= price;
+              case 4001:
+                return l.propertyRentPrice > 4000 ;
             }
           });
     renderListings(filteredList);

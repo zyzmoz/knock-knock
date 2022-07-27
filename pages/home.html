@@ -18,10 +18,11 @@
       </select>
       <select id="propertyRentPriceFilter" class="input">
         <option selected value="">Price</option>
-        <option value="1000">1000</option>
-        <option value="2000">2000</option>
-        <option value="3000">3000</option>
-        <option value="4000">4000+</option>
+        <option value="1000">0-1000</option>
+        <option value="2000">1000-2000</option>
+        <option value="3000">2000-3000</option>
+        <option value="4000">3000-4000</option>
+        <option value="4001">4000+</option>
       </select>
       <select id="propertyFeaturesFilter" class="input">
         <option selected value="">Furnished</option>
@@ -40,11 +41,7 @@
     <div class="listing-view-header">
       <span id="listingMessage"></span>
       <button id="toggleMap" class="btn btn-secondary">
-        <img
-          src="./assets/icons/Map/map-not-filled.svg"
-          alt="Knock Knock Logo"
-          class="logo-icon"
-        />
+        <img src="./assets/icons/Map/map-not-filled.svg" alt="Knock Knock Logo" class="logo-icon" />
         <span id="toggleMapStatus"> View </span> Map
       </button>
     </div>
@@ -55,19 +52,13 @@
   <div id="singleListingDiv">
     <div class="listing-view-header">
       <span></span>
-      <button id="showListingsBtn" class="btn btn-secondary">
-        Go Back to Listings
-      </button>
+      <button id="showListingsBtn" class="btn btn-secondary">Go Back to Listings</button>
     </div>
 
     <div id="singleListingView">
-      <h3 id="propertyType"></h3>
-      <br />
-      <p id="propertyDescription"></p>
-      <br />
-      <div id="propertyImages"></div>
-      <br />
-      <h4 id="propertyRent"></h4>
+      <div id="listingImages"></div>
+      <div id="listingDetails"></div>
+      <div id="listingContact"></div>
     </div>
   </div>
 </article>

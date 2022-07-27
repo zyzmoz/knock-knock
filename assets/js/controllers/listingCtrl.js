@@ -261,7 +261,7 @@ export const listingCtrl = async () => {
         hasCeilingFan: hasCeilingFan.checked,
       },
       propertyFeatures: {
-        hashInUnitLaundry: hashInUnitLaundry.checked,
+        hasInUnitLaundry: hasInUnitLaundry.checked,
         isFurnished: isFurnished.checked,
         hasHardwoodFloor: hasHardwoodFloor.checked,
         hasCarpet: hasCarpet.checked,

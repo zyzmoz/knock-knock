@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Bevan&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Bevan&display=swap');
 
 /* Mobile */
 .tablet-and-desktop-view {
@@ -7,6 +7,7 @@
 
 .mobile-view {
   position: relative;
+  z-index: 999;
 }
 
 .m-nav {
@@ -42,7 +43,7 @@
 .nav-items {
   gap: 1.4rem;
   justify-content: flex-end;
-  font-family: "Space Grotesk", sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
   font-size: 16px;
 }
@@ -76,7 +77,7 @@
   gap: 1.4rem;
   justify-content: flex-end;
   flex-flow: column nowrap;
-  font-family: "Space Grotesk", sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
   font-size: 20px;
   padding: 0 2rem;
@@ -174,7 +175,7 @@
   }
 
   .searchbar::placeholder {
-    font-family: "Nunito";
+    font-family: 'Nunito';
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -201,7 +202,7 @@
   }
 
   .logo-title {
-    font-family: "Bevan", cursive;
+    font-family: 'Bevan', cursive;
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
@@ -316,14 +317,14 @@
 }
 
 .input-group-header {
-  font-family: "Space Grotesk", sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
   font-size: 1.2rem;
   margin-bottom: 12px;
 }
 
 .checkbox-header {
-  font-family: "Space Grotesk", sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
   font-size: 1rem;
   line-height: 150%;
@@ -352,7 +353,7 @@
   max-width: 1200px;
   display: block;
   margin: auto;
-  padding: 1rem 0;
+  padding: 1rem 2rem;
   padding-bottom: 10rem;
 }
 
@@ -379,13 +380,12 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding: 2rem 8rem;
-  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
-    rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
   position: fixed;
   bottom: 0;
   right: 0;
   background-color: #fff;
-  z-index: 999;
+  z-index: 998;
 }
 
 .listing-btns div:last-of-type {
@@ -393,6 +393,15 @@
   flex-flow: row wrap;
   gap: 0.6rem;
   justify-content: flex-end;
+}
+
+@media screen and (max-width: 900px) {
+  .create-listing-wrapper,
+  .create-listing-wrapper input,
+  .create-listing-wrapper label,
+  .create-listing-wrapper textarea {
+    width: 100%;
+  }
 }
 
 .input-group {
@@ -454,7 +463,7 @@
   gap: 0.6rem;
 }
 
-input[type="checkbox"] {
+input[type='checkbox'] {
   width: 18px;
   height: 18px;
 }
@@ -525,7 +534,7 @@ input[type="checkbox"] {
 .image-uploads-text {
   color: #595959;
   font-size: 1.1rem;
-  font-family: "Space Grotesk", sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   flex-grow: 1;
   flex-basis: 100%;
 }
@@ -721,7 +730,7 @@ input[type="checkbox"] {
   margin-bottom: 1rem;
 }
 
-.group-feed-message.me{
+.group-feed-message.me {
   flex-flow: row-reverse wrap;
 }
 
@@ -732,7 +741,7 @@ input[type="checkbox"] {
   margin-right: 1rem;
 }
 
-.group-feed-message.me .avatar{
+.group-feed-message.me .avatar {
   margin-left: 1rem;
 }
 
@@ -775,7 +784,7 @@ input[type="checkbox"] {
 #filtersDiv .filters-container {
   display: flex;
   flex-flow: row wrap;
-  gap: .5rem;
+  gap: 0.5rem;
 }
 
 #filtersDiv .filters-container select {
@@ -786,17 +795,152 @@ input[type="checkbox"] {
   #filtersDiv .filters-container select {
     flex: 1 0 25%;
   }
-  
 }
 
 @media screen and (min-width: 900px) {
   #filtersDiv .filters-container {
     flex-flow: row nowrap;
-
   }
   #filtersDiv .filters-container select {
     flex: 1 0 18%;
   }
-  
 }
 
+/* Single Listing View */
+#singleListingView {
+  width: 100% !important;
+  display: grid !important;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  padding: 1rem;
+  margin: auto;
+}
+
+#locationMap {
+  width: 500px;
+  height: 45vh;
+  max-width: 100% !important;
+  margin-bottom: 2rem;
+}
+
+#messageBox,
+#locationMap {
+  width: 100%;
+}
+
+#listingImages {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+#listingImages img {
+  border-radius: 8px;
+}
+
+#propertyAddress {
+  margin-bottom: 1.4rem;
+}
+
+#propertyType,
+#propertyAmenities,
+#propertyFeatures,
+#propertyBuildingFeatures {
+  margin-bottom: 0.6rem;
+}
+
+#propertyRooms,
+#propertyAmenitiesDiv,
+#propertyFeaturesDiv,
+#propertyBuildingFeaturesDiv {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.6rem;
+}
+
+#propertyRooms p,
+#propertyAmenitiesDiv p,
+#propertyFeaturesDiv p,
+#propertyBuildingFeaturesDiv p {
+  padding: 0.8rem;
+  width: 180px;
+  text-align: center;
+  border: 1px solid #000;
+}
+
+#rentDetails,
+#description,
+#location {
+  margin-bottom: 0.4rem;
+}
+
+#moveIn,
+#parking {
+  margin-bottom: 0.2rem;
+}
+
+#lease,
+#descriptionP {
+  margin-bottom: 1.6rem;
+}
+
+#listingContact {
+  padding: 2rem;
+  height: fit-content;
+  border-radius: 16px;
+  border: 1px solid #000;
+  max-width: 600px;
+}
+
+#rent,
+#listedBy {
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #000;
+}
+
+#message {
+  padding-bottom: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+#messageBox {
+  margin-top: 0.4rem;
+  border-radius: 13px;
+  border: 1px solid #000;
+}
+
+#messageBox:focus {
+  outline: none;
+}
+
+#listingCreator {
+  padding-top: 0.2rem;
+}
+
+@media screen and (min-width: 1200px) {
+  #singleListingView {
+    width: 1300px !important;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #listingImages {
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    grid-column: 1/-1;
+  }
+
+  #listingDetails {
+    grid-column: 1/2;
+  }
+
+  #listingContact {
+    grid-column: 2/-1;
+    justify-self: right;
+  }
+
+  #locationMap {
+    width: 700px;
+  }
+}

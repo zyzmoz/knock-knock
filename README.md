@@ -1,5 +1,7 @@
+# Knock Knock
+
 <div style="background-color: rgba(255,255,255, 1); text-align: center;">
-  <img src="./docs/logo.svg" title="" alt="my image" data-align="center">
+  <img src="./docs/logo.png" title="" alt="my image" data-align="center">
 </div>
 
 <div style="text-align: center; margin: 1rem;">
@@ -13,7 +15,6 @@
 * [Visual Components](https://frolicking-melomakarona-390640.netlify.app/#storybook)
 
 ---
-# Knock Knock
 
 * Users can create and share places to rent
 * Features
@@ -50,8 +51,8 @@
   * Text Editor
     * [VSCode](https://code.visualstudio.com/)
 
----
-# Future Features
+
+## Future Features
 * Listing Management
   * Listings with groups attached
   * Owners/Tenant Ratings

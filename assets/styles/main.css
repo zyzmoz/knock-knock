@@ -948,6 +948,19 @@ input[type='checkbox'] {
   padding-top: 0.2rem;
 }
 
+.offline-message {
+  display: none;
+  padding: 0.5rem;
+  width: 100%;
+  background-color: rgba(255, 0, 0, .7);
+  color: white;
+  text-align: center;
+}
+
+.offline .offline-message {
+  display: block;
+}
+
 @media screen and (min-width: 1200px) {
   #singleListingView {
     width: 1300px !important;

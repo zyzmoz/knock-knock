@@ -1,3 +1,4 @@
+import { searchbarRef } from "../../../index.js";
 import { findMany, getUser } from "../integrations/firebase.js";
 import { uppercaseFirstLetter } from "../misc/index.js";
 
@@ -407,6 +408,16 @@ export const homeCtrl = () => {
       evt.target.value === ""
         ? listings
         : listings.filter((l) => l.propertyAllowsPets === pets);
+    renderListings(filteredList);
+  });
+
+  searchbarRef((filter) => {
+
+    console.log(filter);
+    const filteredList =
+      filter === ""
+        ? listings
+        : listings.filter((l) => l.propertyType.includes(filter) || l.propertyDescription.includes(filter));
     renderListings(filteredList);
   });
 };

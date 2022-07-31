@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="manifest" href="app.webmanifest" />
-    <title>Document</title>
+    <title>Knock Knock</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="./assets/styles/reset.css" />
@@ -84,7 +84,7 @@
               <p class="logo-title"><a href="#home">Knock Knock</a></p>
             </div>
             <div class="searchbar-group">
-              <input type="text" class="searchbar" placeholder="Search..." />
+              <input id="searchbar" type="text" class="searchbar" placeholder="Search..." />
               <img src="./assets/icons/Location/location-background.svg" alt="Searchbar Icon" class="searchbar-icon" />
             </div>
             <div class="nav-items">
@@ -102,7 +102,7 @@
               <p class="logo-title"><a href="#home">Knock Knock</a></p>
             </div>
             <div class="searchbar-group">
-              <input type="text" class="searchbar" placeholder="Search..." />
+              <input id="searchbar2" type="text" class="searchbar" placeholder="Search..." />
               <img src="./assets/icons/Location/location-background.svg" alt="Searchbar Icon" class="searchbar-icon" />
             </div>
             <div class="nav-items">
@@ -214,7 +214,9 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOYEmdTAaekK7k1XP9vliXqJdv7koTgFA&libraries=places"
       defer
     ></script>
-
+    <div class="offline-message">
+      <p>The app will continue to work but you won't get any new data from the internet until you reconnect.</p>
+    </div>
     <main id="root"></main>
   </body>
 </html>

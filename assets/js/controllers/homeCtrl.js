@@ -1,3 +1,4 @@
+import { searchbarRef } from "../../../index.js";
 import { findMany, getUser } from "../integrations/firebase.js";
 import { uppercaseFirstLetter } from "../misc/index.js";
 
@@ -247,6 +248,13 @@ export const homeCtrl = () => {
     contactBtn.innerHTML = "Contact Owner";
     contactBtn.className = "btn btn-primary";
     contactBtn.id = "contactBtn";
+    contactBtn.addEventListener("click", () => {
+      const subject = `${listing.propertyType} - ${listing.propertyDescription
+        .trim()
+        .substr(0, 15)}`;
+      const msg = document.getElementById("messageBox");
+      window.open(`mailto:${creator.email}?subject=${subject}&body=${msg.value}`);
+    });
     listingContact.appendChild(contactBtn);
   };
 
@@ -407,6 +415,19 @@ export const homeCtrl = () => {
       evt.target.value === ""
         ? listings
         : listings.filter((l) => l.propertyAllowsPets === pets);
+    renderListings(filteredList);
+  });
+
+  searchbarRef((filter) => {
+    console.log(filter);
+    const filteredList =
+      filter === ""
+        ? listings
+        : listings.filter(
+            (l) =>
+              l.propertyType.includes(filter) ||
+              l.propertyDescription.includes(filter)
+          );
     renderListings(filteredList);
   });
 };

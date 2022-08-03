@@ -95,7 +95,7 @@
 .listing-card
 {
   cursor:pointer;
-
+}
 /* Tablet */
 @media screen and (min-width: 700px) {
   .mobile-view {
